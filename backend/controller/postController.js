@@ -11,9 +11,6 @@ export const createPost = async (req, res) => {
     }
 
     const post = await new postModel({ userId, title, body }).save();
-    const user = await userModel.findById(userId);
-    user.posts.unshift(post._id);
-    await user.save();
 
     res.status(201).send({
       success: true,
@@ -42,7 +39,7 @@ export const likeUnlikePost = async (req, res) => {
         })
     }
     if (post.likes.includes(req.user._id)) {
-      const index = post.likes.indexof(req.user._id);
+      const index = post.likes.indexOf(req.user._id);
       post.likes.splice(index, 1);
       await post.save();
       return res.status(200).send({
@@ -68,3 +65,45 @@ export const likeUnlikePost = async (req, res) => {
     });
   }
 };
+export const getAllPost = async(req,res)=>{
+    try{
+        const post = await  postModel.find();
+                
+        res.status(200).json(post);
+
+    }
+    catch(error){
+        res.status(404).json({ message: error.message });
+    }
+}
+export const getPost = async(req,res)=>{
+    const id = req.params.id
+    try{
+        const post = await  postModel.findById(id);
+                
+        res.status(200).json(post);
+
+    }
+    catch(error){
+        res.status(404).json({ message: "post not found",error});
+    }
+}
+export const deletePost = async(req,res)=>{
+    const id = req.params.id;
+    const { userId } = req.body;
+    try{
+        const post = await postModel.findById(id);
+        if (post.userId === userId) {
+          await post.deleteOne();
+          res.status(200).json("Post deleted successfully");
+        } else {
+          res.status(403).json("Action forbidden");
+        }
+    }
+    catch(error){
+        res.status(500).send({
+            success:false,
+            message:"error in deleting file"
+        })
+    }
+}

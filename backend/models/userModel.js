@@ -14,12 +14,6 @@ const userSchema = new mongoose.Schema({
     default: "ABCD",
     // required:true
   },
-  posts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
   followers: [
     {
       type: mongoose.Schema.Types.ObjectId,

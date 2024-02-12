@@ -7,12 +7,9 @@ export const registerController = async (req, res) => {
     const userData = req.body;
     const { name,username, email, address, phone, website, company,password } =
       req.body;
-    // const { street, suite, city, Zipcode, geo } = address;
-    // // const { lat, lng } = geo;
-    // const { CompanyName, catchPhrase, bs } = company;
     const existinguser = await userModel.findOne({ email });
     if (existinguser) {
-      res.status(500).send({
+      res.status(409).send({
         success: false,
         message: `Already registered please log in`,
       });
