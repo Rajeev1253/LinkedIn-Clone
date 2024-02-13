@@ -1,4 +1,5 @@
 import { commentModel } from "../models/commentModel.js";
+import { userModel } from "../models/userModel.js";
 
 export const createComment = async (req, res) => {
     try {
@@ -48,7 +49,7 @@ export const createComment = async (req, res) => {
 }
 export const getAllComment = async(req,res)=>{
   try{
-      const comment = await  commentModel.find();
+      const comment = await  commentModel.find().populate("");
               
       res.status(200).json(comment);
 

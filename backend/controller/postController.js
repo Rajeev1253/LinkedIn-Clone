@@ -1,4 +1,6 @@
 import { postModel } from "../models/postModel.js";
+import { getUsersPaginated } from "../service/UserService.js";
+
 export const createPost = async (req, res) => {
   try {
     const { userId, title, body } = req.body;
@@ -64,16 +66,26 @@ export const likeUnlikePost = async (req, res) => {
     });
   }
 };
-export const getAllPost = async(req,res)=>{
-    try{
-        const post = await  postModel.find();
+// export const getAllPost = async(req,res)=>{
+//     try{
+//         const post = await  postModel.find();
                 
-        res.status(200).json(post);
+//         res.status(200).json(post);
 
-    }
-    catch(error){
-        res.status(404).json({ message: error.message });
-    }
+//     }
+//     catch(error){
+//         res.status(404).json({ message: error.message });
+//     }
+// }
+
+export const getAllUsers= async(req, res)=> {
+  let page = req.query.page //starts from 0
+  let users= await UserService.getUsersPaginated(page)
+  if (users && users.length > 0) {
+    res.json(users)
+  } else {
+    res.json("users not found")
+  }
 }
 export const getPost = async(req,res)=>{
     const id = req.params.id

@@ -3,17 +3,17 @@ const app= express();
 import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
-import allroutes from './routes/index.js'
+import routes from './routes/index.js'
 import cors from 'cors';
 dotenv.config();
 //middleware
 app.use(express.json())
-app.use(morgan('dev'))
+app.use(morgan("tiny"))
 app.use(cors())
 
 
 //routes
-app.use("/", allroutes);
+app.use("/", routes);
 
 
 //connection
