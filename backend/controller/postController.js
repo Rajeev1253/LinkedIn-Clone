@@ -1,5 +1,4 @@
 import { postModel } from "../models/postModel.js";
-import { userModel } from "../models/userModel.js";
 export const createPost = async (req, res) => {
   try {
     const { userId, title, body } = req.body;
@@ -91,9 +90,10 @@ export const getPost = async(req,res)=>{
 export const deletePost = async(req,res)=>{
     const id = req.params.id;
     const { userId } = req.body;
+    console.log(id,userId)
     try{
-        const post = await postModel.findById(id);
-        if (post.userId === userId) {
+        const post = await postModel.findById(id);  
+        if (post.userId.toString() === userId) {
           await post.deleteOne();
           res.status(200).json("Post deleted successfully");
         } else {
@@ -106,4 +106,22 @@ export const deletePost = async(req,res)=>{
             message:"error in deleting file"
         })
     }
+}
+export const updatePost = async(req,res)=>{
+  try{
+    const post = await postModel.findByIdAndUpdate
+  (
+      req.params,{
+          $set:req.body
+      }
+  );
+  console.log(post)
+  res.send(post);
+}
+catch(error){
+  res.status(500).json({
+    success:false,
+    message:error.message,
+  })
+}
 }

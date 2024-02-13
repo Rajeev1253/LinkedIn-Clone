@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.post("/register", registerController);
 router.get("/login",loginController)
-
 //private route
 router.get("/user-auth", requireSignIn, (req, res) => {
   res.status(200).send({

@@ -2,7 +2,7 @@ import { userModel } from "../models/userModel.js"
 import  JWT  from "jsonwebtoken";
 import { hashPassword,comparePassword } from "../helper/auth.helper.js";
 
-export const registerController = async (req, res) => {
+export const  registerController = async (req, res) => {
   try {
     const userData = req.body;
     const { name,username, email, address, phone, website, company,password } =
@@ -38,7 +38,7 @@ export const registerController = async (req, res) => {
   }
 };
 
-export const loginController = async (req, res) => {
+export const  loginController = async (req, res) => {
     try {
       const { email, password } = req.body;
       console.log(req.body);
