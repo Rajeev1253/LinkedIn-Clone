@@ -1,20 +1,19 @@
 import { post_Service } from "../service/post.service.js";
 import { handle_error } from "../lib/utils.js";
 
-
 export const createPost = async (req, res) => {
   try {
     const response = post_Service.createPost(req);
     res.status(201).send({
       success: true,
       message: "new post created successfully",
-      post:response.post
+      post: response.post,
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    res.status(error.code || 500).send({
       success: false,
-      Message: "Error in post",
+      Message: error.message,
       error,
     });
   }
@@ -31,35 +30,38 @@ export const getAllPost = async (req, res) => {
 
 export const getPost = async (req, res) => {
   try {
-    const response = await post_Service.getPost(req)
+    const response = await post_Service.getPost(req);
     res.status(200).json(response.post);
   } catch (error) {
-    res.status(404).json({ message: "post not found", error });
+    res.status(error.code || 404).send({ message: error.message, error });
   }
 };
-export const deletePost = async(req,res)=>{
-  try{
+export const deletePost = async (req, res) => {
+  try {
     const response = await post_Service.deletePost(req);
     return res.status(200).send({
       success: true,
       message: "post deleted",
       data: response.data,
     });
+  } catch (error) {
+    handle_error(res, error);
   }
-  catch (error) {
-    handle_error(res,error);
-  }}
-  
-  export const updatePost = async(req,res)=>{
-    try{
-      const response = await post_Service.updatePost(req);
-      console.log(response.data)
-      res.send(response.data);
-}catch(error){
-    res.status(500).json({
-      success:false,
-      message:error.message,
-    })
-  }
+};
 
-}
+export const updatePost = async (req, res) => {
+  try {
+    const response = await post_Service.updatePost(req);
+    console.log(response.data);
+    res.send(response.data);
+  } catch (error) {
+    handle_error(res, error);
+  }
+};
+
+export default {
+  updatePost,
+  deletePost,
+  createPost,
+  getAllPost,
+};

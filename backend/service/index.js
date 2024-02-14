@@ -1,4 +1,6 @@
-import { post_Service } from "./post.service";
+import { post_Service } from "./post.service.js";
 import { userService } from "./user.service.js";
+import commentService from "./comment.service.js";
+import reaction_service from "./reaction.service.js";
 
-export default service;
+export { post_Service, userService, commentService, reaction_service };

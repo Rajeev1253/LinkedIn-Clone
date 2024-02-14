@@ -1,15 +1,11 @@
 import express from "express";
-import { createPost,deletePost,getAllPost, getPost, updatePost } from '../controller/postController.js'
-import {  requireSignIn } from "../middleware/authMiddleware.js";
+import { postController } from "../controller/index.js";
+import { requireSignIn } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-router.post("/create",requireSignIn,createPost);
-router.get("/posts",requireSignIn, getAllPost)
-router.get("/:id",requireSignIn,getPost)
-router.delete("/:id",requireSignIn,deletePost)
-router.put("/:id",requireSignIn,updatePost)
+router.post("/create", requireSignIn, postController.createPost);
+router.get("/posts", requireSignIn, postController.getAllPost);
+router.delete("/:id", requireSignIn, postController.deletePost);
+router.put("/:id", requireSignIn, postController.updatePost);
 
 export default router;
-
-
-
