@@ -13,4 +13,4 @@ const reactionSchema = new mongoose.Schema({
         type:String,
         enum: ["like","celeberate","support","love","funny"], 
     }
-})
+},{timestamps:true})

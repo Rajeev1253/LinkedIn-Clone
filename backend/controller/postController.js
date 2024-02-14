@@ -1,40 +1,14 @@
-import { postModel } from "../models/postModel.js";
-import { getUsersPaginated } from "../service/UserService.js";
+import { post_Service } from "../service/post.service.js";
+import { handle_error } from "../lib/utils.js";
 
-export const createPost2 = async (req, res) => {
-  try {
-    const res = await post.service.createPost(req);
-    res.status(201).send({
-      success: true,
-      message: "user Register Successfully",
-      user: response.user,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      Message: "Error in post",
-      error,
-    });
-  }
-};
 
 export const createPost = async (req, res) => {
   try {
-    const { userId, title, body } = req.body;
-    if (!title) {
-      return res.status(401).send({ message: "title is required" });
-    }
-    if (!body) {
-      return res.status(401).send({ message: "body is required" });
-    }
-
-    const post = await new postModel({ userId, title, body }).save();
-
+    const response = post_Service.createPost(req);
     res.status(201).send({
       success: true,
       message: "new post created successfully",
-      post,
+      post:response.post
     });
   } catch (error) {
     console.log(error);
@@ -45,102 +19,47 @@ export const createPost = async (req, res) => {
     });
   }
 };
-
-export const likeUnlikePost = async (req, res) => {
-  try {
-    const post = await postModel.findById(req.params.id);
-    if (!post) {
-      return res.status(404).send({
-        success: false,
-        message: "Post not found",
-      });
-    }
-    if (post.likes.includes(req.user._id)) {
-      const index = post.likes.indexOf(req.user._id);
-      post.likes.splice(index, 1);
-      await post.save();
-      return res.status(200).send({
-        message: "post unliked successfully",
-        success: true,
-      });
-    } else {
-      post.likes.push(req.user._id);
-      await post.save();
-      return res.status(200).send({
-        message: "post liked successfully",
-        success: true,
-      });
-    }
-  } catch (error) {
-    console.log(error);
-    req.status(500).send({
-      success: false,
-      message: "error in like & unlike",
-      error,
-    });
-  }
-};
-// export const getAllPost = async(req,res)=>{
-//     try{
-//         const post = await  postModel.find();
-
-//         res.status(200).json(post);
-
-//     }
-//     catch(error){
-//         res.status(404).json({ message: error.message });
-//     }
-// }
-
-export const getAllUsers = async (req, res) => {
+export const getAllPost = async (req, res) => {
   let page = req.query.page; //starts from 0
-  let users = await UserService.getUsersPaginated(page);
+  let users = await post_Service.getPostPaginated(page);
   if (users && users.length > 0) {
     res.json(users);
   } else {
     res.json("users not found");
   }
 };
-export const getPost = async (req, res) => {
-  const id = req.params.id;
-  try {
-    const post = await postModel.findById(id);
 
-    res.status(200).json(post);
+export const getPost = async (req, res) => {
+  try {
+    const response = await post_Service.getPost(req)
+    res.status(200).json(response.post);
   } catch (error) {
     res.status(404).json({ message: "post not found", error });
   }
 };
-export const deletePost = async (req, res) => {
-  const id = req.params.id;
-  const { userId } = req.body;
-  console.log(id, userId);
-  try {
-    const post = await postModel.findById(id);
-    if (post.userId.toString() === userId) {
-      await post.deleteOne();
-      res.status(200).json("Post deleted successfully");
-    } else {
-      res.status(403).json("Action forbidden");
-    }
-  } catch (error) {
-    res.status(500).send({
-      success: false,
-      message: "error in deleting file",
+export const deletePost = async(req,res)=>{
+  try{
+    const response = await post_Service.deletePost(req);
+    return res.status(200).send({
+      success: true,
+      message: "post deleted",
+      data: response.data,
     });
   }
-};
-export const updatePost = async (req, res) => {
-  try {
-    const post = await postModel.findByIdAndUpdate(req.params, {
-      $set: req.body,
-    });
-    console.log(post);
-    res.send(post);
-  } catch (error) {
+  catch (error) {
+    handle_error(res,error);
+  }}
+  
+  export const updatePost = async(req,res)=>{
+    try{
+      const response = await post_Service.updatePost(req);
+      console.log(response.data)
+      res.send(response.data);
+}catch(error){
     res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+      success:false,
+      message:error.message,
+    })
   }
-};
+
+}
