@@ -39,6 +39,7 @@ export const getPost = async (req, res) => {
 export const deletePost = async (req, res) => {
   try {
     const response = await post_Service.deletePost(req);
+     console.log(response)
     return res.status(200).send({
       success: true,
       message: "post deleted",
@@ -53,7 +54,7 @@ export const updatePost = async (req, res) => {
   try {
     const response = await post_Service.updatePost(req);
     console.log(response.data);
-    res.send(response.data);
+    return res.send(response.data);
   } catch (error) {
     handle_error(res, error);
   }

@@ -21,15 +21,18 @@ export const getPost = async (payload) => {
   return { post };
 };
 export const deletePost = async (payload) => {
-  const data = postModel.findByIdAndDelete(payload.params);
-  return { data };
+  console.log(payload.params.id)
+  const data = postModel.findByIdAndDelete({_id: payload.params.id});
+  // console.log(data)
+  return  data ;
 };
 
 export const updatePost = async (payload) => {
-  let data = postModel.findByIdAndUpdate(payload.params, {
+  const data = postModel.findByIdAndUpdate({_id: payload.params.id}, {
     $set: payload.body,
   });
-  return { data };
+  console.log(data)
+  return data;
 };
 
 export const post_Service = {

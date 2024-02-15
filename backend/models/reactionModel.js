@@ -10,7 +10,7 @@ const reactionSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "postModel",
     },
-    reaction: {
+    type: {
       type: String,
       enum: ["like", "celeberate", "support", "love", "funny"],
     },

@@ -1,4 +1,3 @@
-import { commentModel } from "../models/commentModel.js";
 import { commentService } from "../service/index.js";
 import { handle_error } from "../lib/utils.js";
 
@@ -31,8 +30,9 @@ const deleteComment = async (req, res) => {
 const fetchComment = async (req, res) => {
   try {
     const response = await commentService.fetchComment();
-
-    res.status(200).json(response.comment);
+    console.log(response.comment)
+    return response.comment 
+     res.status(200).json(response.comment);
   } catch (error) {
     res.status(error.code || 404).json({ message: error.message });
   }
