@@ -99,10 +99,15 @@ const SignupComponent = () => {
             </p>
           </div>
           <div className="sign-button">
-           <Button variant="contained"></Button>
+           <Button variant="contained">Agree & join</Button>
           </div>
           <div className="or">
-            <h3>or</h3>
+            <p>or</p>
+          </div>
+          <div className="google-btn">
+          <Button variant="outlined" sx={{width:"323px", height:"38px",borderRadius:"15px ",color:"black" ,border:"1px solid black"}}>
+          Continue with Google
+</Button>
           </div>
           <div className="sign-in">
             <p>

@@ -87,7 +87,12 @@ span{
 }
 .or{
     text-align: center;
-    padding-top: 34px       ;
+    font-weight: 400;
+    font-size: 16px;
+    padding-top: 34px;
+    line-height: 24px;
+    color: rgba(0, 0,0,0.75 );
+
 }
 .sign-in{
     text-align: center;
@@ -103,4 +108,9 @@ label{
    display: flex;
    justify-content: center;
 
+}
+.google-btn{
+    text-align: center;
+    padding-top: 28px;
+    color: black;
 }
