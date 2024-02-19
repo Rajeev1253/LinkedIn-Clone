@@ -37,7 +37,7 @@
 }
 .signup-box{
     width: 400px;
-    height: 494px;
+    height: 454px;
     background-color:#ffff;
     border-radius:8px ;
 }
@@ -85,15 +85,7 @@ span{
     font-weight: 600;
 
 }
-.or{
-    text-align: center;
-    font-weight: 400;
-    font-size: 16px;
-    padding-top: 34px;
-    line-height: 24px;
-    color: rgba(0, 0,0,0.75 );
 
-}
 .sign-in{
     text-align: center;
     padding-top: 33px;
@@ -111,6 +103,85 @@ label{
 }
 .google-btn{
     text-align: center;
-    padding-top: 28px;
+    padding-top: 20px;
     color: black;
+}
+.google{
+    display: flex;
+    align-items: center;
+}
+.google>span>img{
+    width: 18px;
+    height: 18px;
+    padding-top: 5px;
+
+}
+.google>p{
+    padding-left: 8px;
+}
+.bottom-para{
+    text-align: center;
+    padding-top: 10px;
+}
+.choice_seprator {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #E7E7E9;
+    padding-top: 17px;
+}
+
+.or {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 15px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.9);;
+}
+
+.or::before {
+    content: "  ";
+    width: 150px;
+    height: 1px;
+    background: #E7E7E9;
+    position: absolute;
+    right: 180%;
+    top: 60%;
+}
+
+.or::after {
+    content: "";
+    width: 150px;
+    height: 1px;
+    background: #E7E7E9;
+    left: 180%;
+    top: 60%;
+    position: absolute;
+}
+/* .content{
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+} */
+.password{
+    padding-left:20px ;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+}
+.label2{
+    padding-top: 24px;
+}
+.show{
+    color:#0a66c2,
+    
+}
+.show{
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(10, 102, 194);
+}
+.buttons{
+    
 }

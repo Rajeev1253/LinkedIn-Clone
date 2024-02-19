@@ -26,10 +26,7 @@ import { userModel } from "../models/userModel.js";
 // };
 const registerController = async (payload) => {
   try {
-      const { username, email, password } = payload.body      
-      if (!username) {
-          return res.send({ error: 'Name is required' })
-      }
+      const {email, password } = payload.body      
       if (!email) {
           return res.send({ error: 'email is required' })
       }
@@ -45,7 +42,7 @@ const registerController = async (payload) => {
       //register user
       const hashed_password = await hashPassword(password);
       //save password
-      const user = await userModel.create({username,email,password:hashed_password});
+      const user = await userModel.create({email,password:hashed_password});
       return {user};
   } catch(error) {
     console.log(error)
