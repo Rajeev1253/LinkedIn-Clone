@@ -26,50 +26,56 @@ import { userModel } from "../models/userModel.js";
 // };
 const registerController = async (req) => {
   try {
-      const {email, password } = req.body      
-      if (!email) {
-        throw Object.assign(new Error(), {name:"BAD_REQUEST", message: 'email is required'});
-        
-      }
-      if (!password) {
-        throw Object.assign(new Error(), {name:"BAD_REQUEST", message: 'password is required'});
-      }
-     
-      const existingUser = await userModel.findOne({ email });
+    const { email, password } = req.body;
+    if (!email) {
+      throw Object.assign(new Error(), {
+        name: "BAD_REQUEST",
+        message: "email is required",
+      });
+    }
+    if (!password) {
+      throw Object.assign(new Error(), {
+        name: "BAD_REQUEST",
+        message: "password is required",
+      });
+    }
 
-      if (existingUser) {
-          throw Object.assign(new Error(), {name:"CONFLICT", message: 'User Already exists'});
-      }
-      //register user
-      const hashed_password = await hashPassword(password);
-      //save password
-      const user = await userModel.create({email,password:hashed_password});
-      return {user};
-  } catch(error) {
-    console.log(error)
-      throw error;
+    const existingUser = await userModel.findOne({ email });
+
+    if (existingUser) {
+      throw Object.assign(new Error(), {
+        name: "CONFLICT",
+        message: "User Already exists",
+      });
+    }
+    //register user
+    const hashed_password = await hashPassword(password);
+    //save password
+    const user = await userModel.create({ email, password: hashed_password });
+    return { user };
+  } catch (error) {
+    console.log(error);
+    throw error;
   }
-}
+};
 
- const loginController = async (payload) => {
+const loginController = async (payload) => {
   try {
     const { email, password } = payload.body;
-    console.log(payload.body)
+    console.log("payload", payload.body);
 
     if (!email || !password) {
-      throw Object.assign(new Error(),{
+      throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
-        message: "Email or Password is missing"
-      })
-     
+        message: "Email or Password is missing",
+      });
     }
     const user = await userModel.findOne({ email });
     if (!user) {
-      throw Object.assign(new Error(),{
+      throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
-        message:`Email is not registered`
-
-      })
+        message: `Email is not registered`,
+      });
     }
     const match = await comparePassword(password, user.password);
     if (!match) {
@@ -98,7 +104,7 @@ const registerController = async (req) => {
   }
 };
 
-export const userService ={
+export const userService = {
   loginController,
   registerController,
-}
+};

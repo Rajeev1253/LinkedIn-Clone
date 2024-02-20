@@ -30,17 +30,21 @@ export const registerUser = createAsyncThunk(
 );
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async ({email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
+      console.log("action", email, password);
       const config = {
         headers: {
           "Content-Type": "application/json",
         },
       };
 
-      
-      const res = await axios.post(`http://localhost:8080/users/login`, { email, password }, config );
-      console.log(res);
+      const res = await axios.post(
+        `http://localhost:8080/users/login`,
+        { email, password },
+        config
+      );
+      console.log("action res", res);
       return res;
     } catch (error) {
       if (error.response && error.response.data.message) {
