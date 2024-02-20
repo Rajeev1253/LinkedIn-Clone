@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { registerUser } from "./authAction"
+import { loginUser, registerUser } from "./authAction"
 const initalState ={
     loading:false,
     userInfo:{},
@@ -19,15 +19,32 @@ const authSlice = createSlice({
         })
         builder.addCase(registerUser.fulfilled,(state,action)=>{
             state.loading=false
-            state.userInfo=action.payload.user
+            state.success = true
         })
         builder.addCase(registerUser.rejected,(state,action)=>{
             state.loading=false
+            state.success=false
+            state.error=action.error.message
+        })
+        //
+        builder.addCase(loginUser.pending,(state)=>{
+            state.loading=true
+        })
+        builder.addCase(loginUser.fulfilled,(state,action)=>{
+            state.loading=false
+            state.success=true
+            state.userInfo=action.payload.data.user
+            state.userToken=action.payload.data.token
+        })
+        builder.addCase(loginUser.rejected,(state,action)=>{
+            state.loading=true
+            state.success=false
             state.error=action.error.message
         })
 
 
     }
+    
 
 })  
 

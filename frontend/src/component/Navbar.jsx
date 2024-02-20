@@ -1,10 +1,16 @@
 import React from 'react'
 import logo from '../assets/Linkedin.svg'
 import './Style/navbar.css'
-import { AppBar, IconButton, Toolbar } from '@mui/material'
+import { AppBar, IconButton, Toolbar,Box } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import WorkIcon from '@mui/icons-material/Work';
+import SmsRoundedIcon from '@mui/icons-material/SmsRounded';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -49,19 +55,42 @@ const Navbar = () => {
     <div className='navbar'>
       <AppBar position='static' sx={{bgcolor:"white"}}>
         <Toolbar>
-          <IconButton size='medium' edge="start" color='inherit' aria-label="logo">
+        <Box component='div' display='flex' sx={{mr:7}}>
+        <Box component="div" display='flex' width='480px' height='32px' sx={{ml:52 }}>
+        <IconButton size='medium' edge="start" color='inherit' aria-label="logo">
             <img src={logo} alt=""></img>
           </IconButton>
-          <Search >
+          <Search size="small">
             <SearchIconWrapper>
               <SearchIcon sx={{color:"black"}} />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
+              size='small'
               inputProps={{ 'aria-label': 'search' }}
-              sx={{width:"280px"}}
+              sx={{width:"280px",
+              height:"32px",
+              '&:hover':{
+                width:"382px",
+                height:"32px",
+              },}}
             />
           </Search>
+        </Box>
+        <Box  component='div' display='flex'  fontSize='large'  sx={{color:"grey", width:"40px", height:"24px" }} >
+       <HomeIcon sx={{mr:6}}/>
+       <PeopleAltIcon sx={{mr:6}}  />
+       <WorkIcon sx={{mr:6}} />
+       <SmsRoundedIcon sx={{mr:6}} />
+       <NotificationsIcon sx={{mr:6}}/>
+
+        </Box>
+
+        </Box>
+
+       
+
+         
 
         </Toolbar>
       </AppBar>

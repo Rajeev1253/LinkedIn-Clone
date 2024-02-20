@@ -16,35 +16,61 @@ import { registerUser } from "../features/auth/authAction";
 
 
 const SignupComponent = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [Error,setError]= useState({
+    password:null,
+    email:null,
+  })
+  const [data,setdata]=useState({
+    email:"",
+    password:""
+  })
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const navigate= useNavigate()
   const {loading,userInfo,error,success}=useSelector((state)=>state.auth)
   const dispatch = useDispatch()
 
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+  function password_validate(password) {
+    return /[A-Z]/.test(password) && /[0-9]/.test(password) && !/[aeiou]/.test(password) && /^[@#][A-Za-z0-9]{7,13}$/.test(password);
+}
+  const handleChangeEmail =(e)=>{
+    const data = e.target.value
+    if(data === ""  && !isValidEmail(data)){
+      setError((pre)=>({...pre,email:true}));
+    }
+    else{
+      setError((pre)=>({...pre,email:false}))
+    }
+    setdata((pre)=>({...pre,email:data}))
+  }
+  const handleChangPassword=(e)=>{
+    const data = e.target.value
+    if(data === "" && !password_validate(data)){
+      setError((pre)=>({...pre,password:true}))
+    }
+    else{
+      setError((pre)=>({...pre,password:false}))
+    }
+    setdata((pre)=>({...pre,password:data}))
+   
+  }
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleSubmit = async(e) => {
-    e.preventDefault();
+  const handleSubmit = async() => {
     
-    try {
-
-      const response = await axios.post("http://localhost:8080/users/register", {email,password});
-      if(response.data.success){
-        dispatch(registerUser(response))
-        navigate('/login');
-     }
-     else{
-    }
-    
-  } catch (error) {
-    console.log( error)
-    
-    }
-   
+      dispatch(registerUser(data)).unwrap().then((res)=> {
+        if(res.data.message === "user Register Successfully"){
+          navigate('/login')
+        }
+      
+        console.log("response - ",res);
+      })
+     
   };
 
   return (
@@ -69,10 +95,8 @@ const SignupComponent = () => {
                   className="email"
                   size="small"
                   type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
+                  value={data.email}
+                  onChange={handleChangeEmail}
                   sx={{ height: "30px" }}
                 />
               </div>
@@ -101,8 +125,8 @@ const SignupComponent = () => {
                   size="small"
                   sx={{ width: "348px", marginTop:"-10px"}}
                   type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e)=>{setPassword(e.target.value)}}
+                  value={data.password}
+                  onChange={handleChangPassword}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton

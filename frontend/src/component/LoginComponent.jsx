@@ -12,33 +12,30 @@ import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate,Link } from "react-router-dom";
 import axios from "axios"
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authAction";
 const LoginComponent = () => {
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("")
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch=useDispatch();
+
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const {loading,userInfo,error,success}=useSelector((state)=>state.auth)
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    
-    try {
-      const response = await axios.post("http://localhost:8080/users/login", {email,password});
-      if(response.data.success){
+  const handleSubmit = async() => {
+    console.log(email,password)
+    dispatch(loginUser({email,password})).unwrap().then((res)=> {
+      if(res.data.message === "Login Sucessfully"){
         navigate('/home')
-        
-     }
-     else{
-    }
+      }
     
-  } catch (error) {
-    console.log( error)
-    
-    }
-   
+      console.log("response - ",res);
+    })
   };
   return (
     <div className="login-Component">
