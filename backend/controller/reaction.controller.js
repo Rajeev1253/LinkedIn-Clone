@@ -1,3 +1,4 @@
+import { handle_error } from "../lib/utils.js";
 import { reaction_service } from "../service/index.js";
 export const saveReactions = async (req, res) => {
   try {
@@ -6,7 +7,8 @@ export const saveReactions = async (req, res) => {
     return res.status(201).json({ response });
   } catch (err) {
     console.log(err);
-    return res.status(err.code || 400).send(err.message);
+    console.log("saveReaction",err)
+    handle_error(res,err)
   }
 };
 
@@ -15,8 +17,8 @@ export const getReactions = async (req, res) => {
     const response = await reaction_service.getReactions();
     return res.status(200).json(response);
   } catch (err) {
-    console.log(err);
-    return res.status(400).send(err);
+    console.log("getReaction",err);
+    handle_error(res,err)
   }
 };
 
@@ -25,8 +27,8 @@ export const updateReaction = async (req, res) => {
     const response = await reaction_service.updateReaction(req);
     return res.status(202).json(response);
   } catch (err) {
-    console.log(err);
-    return res.status(400).send(err);
+    console.log("updateReaction",err);
+    handle_error(res,err)
   }
 };
 
@@ -35,8 +37,9 @@ export const removeReaction = async (req, res) => {
     const response = await reaction_service.removeReaction(req);
     return res.status(202).json(response);
   } catch (err) {
-    console.log(err);
-    return res.status(400).send(err);
+    console.log("removeReaction",err);
+    handle_error(res,err)
+ 
   }
 };
 export default {

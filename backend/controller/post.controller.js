@@ -10,21 +10,17 @@ export const createPost = async (req, res) => {
       post: response.post,
     });
   } catch (error) {
-    console.log(error);
-    res.status(error.code || 500).send({
-      success: false,
-      Message: error.message,
-      error,
-    });
+    console.log("create post",error);
+    handle_error(res,error)
   }
 };
 export const getAllPost = async (req, res) => {
-  let page = req.query.page; //starts from 0
-  let users = await post_Service.getPostPaginated(page);
+  // let page = req.query.page; //starts from 0
+  let users = await post_Service.getPostPaginated(req);
   if (users && users.length > 0) {
-    res.json(users);
+    res.status(200).json(users);
   } else {
-    res.json("users not found");
+    res.status(404).json("users not found");
   }
 };
 
@@ -33,7 +29,7 @@ export const getPost = async (req, res) => {
     const response = await post_Service.getPost(req);
     res.status(200).json(response.post);
   } catch (error) {
-    res.status(error.code || 404).send({ message: error.message, error });
+    handle_error(res,error)
   }
 };
 export const deletePost = async (req, res) => {
