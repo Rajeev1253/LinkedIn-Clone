@@ -12,8 +12,10 @@ export const registerUser = createAsyncThunk(
                     'Content-Type': 'application/json',
                 },
             }
-            await axios.post(
+           const res= await axios.post(
                 `${backendURL}/users/register`,{email,password},config)
+                console.log(res)
+            return res
 
         }
         catch(error){
@@ -27,3 +29,28 @@ export const registerUser = createAsyncThunk(
         }
     }
 )
+export const loginUser = createAsyncThunk(
+    'auth/login',
+    async({email,password},{rejectWithValue})=>{
+        try{
+            const config={
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+            }
+            await axios.post(
+                `${backendURL}/users/login`,{email,password},config)
+
+        }
+        catch(error){
+            if(error.response && error.response.data.message){
+                return rejectWithValue(error.response.data.message)
+            }
+            else{
+                return rejectWithValue(error.message)
+            }
+
+        }
+    }
+)
+

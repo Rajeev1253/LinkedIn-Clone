@@ -24,14 +24,15 @@ import { userModel } from "../models/userModel.js";
 //     throw error;
 //   }
 // };
-const registerController = async (payload) => {
+const registerController = async (req) => {
   try {
-      const {email, password } = payload.body      
+      const {email, password } = req.body      
       if (!email) {
-          return res.send({ error: 'email is required' })
+        throw Object.assign(new Error(), {name:"BAD_REQUEST", message: 'email is required'});
+        
       }
       if (!password) {
-          return res.send({ error: 'password is required' })
+        throw Object.assign(new Error(), {name:"BAD_REQUEST", message: 'password is required'});
       }
      
       const existingUser = await userModel.findOne({ email });

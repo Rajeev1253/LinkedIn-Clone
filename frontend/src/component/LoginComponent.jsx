@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/Logo.png";
 import "../component/Style/login.css";
-import { Button, FilledInput, OutlinedInput, Paper } from "@mui/material";
+import { Button, FilledInput, OutlinedInput, Paper ,Stack} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import google from "../assets/google-icon.png"
 import apple from "../assets/apple.png"
@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import InputAdornment from "@mui/material/InputAdornment";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import axios from "axios"
 const LoginComponent = () => {
   const [email,setEmail]=useState("");
@@ -58,8 +58,8 @@ const LoginComponent = () => {
                   <TextField
                     id="standard-basic"
                     label="Email or Phone"
-                    size="small"
-                    variant="standard"
+                    size="medium"
+                    variant="outlined"
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     sx={{
@@ -82,14 +82,13 @@ const LoginComponent = () => {
                 label="Password"
                 variant="outlined"
               >
-                <InputLabel htmlFor="filled-adornment-password">Password
+                <InputLabel htmlFor="filled-adornment-password" sx={{paddingBottom:"10px"}}>Password
                 </InputLabel>
                 <OutlinedInput
-                
+                label="password"
                 Input
                   id="filled-adornment-password"
-                
-                  
+                  size="medium"
                   value={password}
                   onChange={(e)=>setPassword(e.target.value)}
                   sx={{ width: "302px", marginTop:"-10px", marginLeft:"-8px", color:"black"}}
@@ -211,6 +210,10 @@ const LoginComponent = () => {
             </div>
           </div>
         </Paper>
+        <div className="new">
+          <p>New to LinkedIn?<span> <Link to="/signup">Join Now</Link></span></p>
+        </div>
+     
       </div>
     </div>
   );

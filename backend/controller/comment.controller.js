@@ -22,9 +22,7 @@ const deleteComment = async (req, res) => {
       comment: response.comment,
     });
   } catch (error) {
-    // handle_error(req, error);
-    console.log("deleteComment", error);
-    return res.status(error.code || 500).send(error.message || error);
+    handle_error(req, error);
   }
 };
 const fetchComment = async (req, res) => {
@@ -32,9 +30,9 @@ const fetchComment = async (req, res) => {
     const response = await commentService.fetchComment();
     console.log(response.comment)
     return response.comment 
-     res.status(200).json(response.comment);
+    //  res.status(200).json(response.comment);
   } catch (error) {
-    res.status(error.code || 404).json({ message: error.message });
+    handle_error(req,error)
   }
 };
 const updateComment = async (req, res) => {
@@ -46,10 +44,7 @@ const updateComment = async (req, res) => {
       data: response.data,
     });
   } catch (error) {
-    res.status(error.code || 500).json({
-      success: false,
-      message: error.message,
-    });
+   handle_error(req,error)
   }
 };
 const getAllcomments = async (req, res) => {

@@ -11,7 +11,7 @@ import google from "../assets/google-icon.png";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../features/authAction";
+import { registerUser } from "../features/auth/authAction";
 
 
 
@@ -31,12 +31,11 @@ const SignupComponent = () => {
     e.preventDefault();
     
     try {
+
       const response = await axios.post("http://localhost:8080/users/register", {email,password});
       if(response.data.success){
         dispatch(registerUser(response))
         navigate('/login');
-        
-        
      }
      else{
     }
@@ -97,6 +96,7 @@ const SignupComponent = () => {
                 </InputLabel>
                 <OutlinedInput
                 Input
+                label="password"
                   id="filled-adornment-password"
                   size="small"
                   sx={{ width: "348px", marginTop:"-10px"}}
