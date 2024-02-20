@@ -54,6 +54,7 @@ const registerController = async (req) => {
  const loginController = async (payload) => {
   try {
     const { email, password } = payload.body;
+    console.log(payload.body)
 
     if (!email || !password) {
       throw Object.assign(new Error(),{

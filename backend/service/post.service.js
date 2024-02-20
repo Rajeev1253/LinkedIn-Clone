@@ -6,8 +6,8 @@ export const createPost = async (payload) => {
   return { post };
 };
 
-export const getPostPaginated = async (req) => {
-  const page= req.query.page
+export const getPostPaginated = async (payload) => {
+  const page= payload.params
   let resultsPerPage = 10;
   return postModel
     .find({})

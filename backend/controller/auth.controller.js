@@ -20,6 +20,7 @@ export const registerController = async (req, res) => {
 
 export const loginController = async (req, res) => {
   try {
+    console.log(req.body)
     const res = await userService.loginController(req);
     res.status(200).send({
       success: true,

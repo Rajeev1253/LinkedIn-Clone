@@ -20,7 +20,7 @@ export const getAllPost = async (req, res) => {
   if (users && users.length > 0) {
     res.status(200).json(users);
   } else {
-    res.status(404).json("users not found");
+    res.status(204).json("users not found");
   }
 };
 
