@@ -50,7 +50,7 @@ const SignupComponent = () => {
     }
     setdata((pre) => ({ ...pre, email: data }));
   };
-  
+
   const handleChangPassword = (e) => {
     const data = e.target.value;
     if (data === "" && !password_validate(data)) {
@@ -68,11 +68,15 @@ const SignupComponent = () => {
     dispatch(registerUser(data))
       .unwrap()
       .then((res) => {
-        if (res.data.message === "user Register Successfully") {
+        console.log(res);
+        console.log("hello");
+        if (res.status === 200 || res.status === 201) {
           navigate("/login");
         }
-
-        console.log("response - ", res);
+      })
+      .catch((err) => {
+        alert(err);
+        console.log("err", err);
       });
   };
 

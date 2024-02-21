@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "userModel",
+    ref: "userModel", // add required attribute
   },
   title: {
     type: String,
@@ -16,7 +16,7 @@ const postSchema = mongoose.Schema({
 
   body: {
     type: String,
-    required: true,
+    // required: true,
   },
   createdAt: {
     type: Date,

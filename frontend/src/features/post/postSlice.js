@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPost } from "./postAction";
+import { fetchPost,createPost } from "./postAction";
 
 const initalList = {
     post:[],
@@ -19,6 +19,19 @@ const postSlice = createSlice({
             state.post = action.payload
         } )
         builders.addCase(fetchPost.rejected,(state,action)=>{
+            state.isLoading=false
+            state.error=action.error.message
+
+        })
+        builders.addCase(createPost.pending,(state)=>{
+            state.isLoading=true
+        })
+        builders.addCase(createPost.fulfilled,(state,action)=>{
+            console.log(action.payload)
+            state.isLoading = false
+            state.post = action.payload
+        } )
+        builders.addCase(createPost.rejected,(state,action)=>{
             state.isLoading=false
             state.error=action.error.message
 

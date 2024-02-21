@@ -1,10 +1,12 @@
 import {
+  Avatar,
   Box,
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
+  Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
@@ -13,15 +15,19 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-const Card2 = ({props}) => {
+const Card2 = (props) => {
   return (
     <div className="card">
-      <Box width="555px">
+      <Box width="471px">
         <Card>
           <CardContent>
+          <Stack display="flex" direction="row" >
+          <Avatar>R</Avatar>
+          <Typography sx={{pl:1}}>Rajeev Goyal</Typography>
+
+          </Stack>
             <Typography gutterBottom variant="h5" component="div" color="grey">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-              quibusdam!
+              {props.tittle}
             </Typography>
           </CardContent>
 
@@ -35,10 +41,7 @@ const Card2 = ({props}) => {
               React
             </Typography>
             <Typography gutterBottom variant="body2" component="div">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-              exercitationem nemo iure ab libero, neque vero et iste est esse
-              rerum possimus illum ipsam magni aut enim, pariatur consequatur.
-              Minus?
+             {props.body}
             </Typography>
           </CardContent>
           <CardActions sx={{ color: "gray" }}>

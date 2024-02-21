@@ -1,4 +1,4 @@
-import { handle_error } from "../lib/utils.js";
+import { errorHandler } from "../lib/utils.js";
 import { reaction_service } from "../service/index.js";
 export const saveReactions = async (req, res) => {
   try {
@@ -8,7 +8,7 @@ export const saveReactions = async (req, res) => {
   } catch (err) {
     console.log(err);
     console.log("saveReaction",err)
-    handle_error(res,err)
+    errorHandler(res,err)
   }
 };
 
@@ -18,7 +18,7 @@ export const getReactions = async (req, res) => {
     return res.status(200).json(response);
   } catch (err) {
     console.log("getReaction",err);
-    handle_error(res,err)
+    errorHandler(res,err)
   }
 };
 
@@ -28,7 +28,7 @@ export const updateReaction = async (req, res) => {
     return res.status(202).json(response);
   } catch (err) {
     console.log("updateReaction",err);
-    handle_error(res,err)
+    errorHandler(res,err)
   }
 };
 
@@ -38,7 +38,7 @@ export const removeReaction = async (req, res) => {
     return res.status(202).json(response);
   } catch (err) {
     console.log("removeReaction",err);
-    handle_error(res,err)
+    errorHandler(res,err)
  
   }
 };

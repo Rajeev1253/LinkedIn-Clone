@@ -1,5 +1,5 @@
 import { commentService } from "../service/index.js";
-import { handle_error } from "../lib/utils.js";
+import { errorHandler } from "../lib/utils.js";
 
 const createComment = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const createComment = async (req, res) => {
       comment: response.comment,
     });
   } catch (error) {
-    handle_error(req, error);
+    errorHandler(req, error);
   }
 };
 const deleteComment = async (req, res) => {
@@ -22,7 +22,7 @@ const deleteComment = async (req, res) => {
       comment: response.comment,
     });
   } catch (error) {
-    handle_error(req, error);
+    errorHandler(req, error);
   }
 };
 const fetchComment = async (req, res) => {
@@ -32,7 +32,7 @@ const fetchComment = async (req, res) => {
     return response.comment 
     //  res.status(200).json(response.comment);
   } catch (error) {
-    handle_error(req,error)
+    errorHandler(req,error)
   }
 };
 const updateComment = async (req, res) => {
@@ -44,7 +44,7 @@ const updateComment = async (req, res) => {
       data: response.data,
     });
   } catch (error) {
-   handle_error(req,error)
+   errorHandler(req,error)
   }
 };
 const getAllcomments = async (req, res) => {

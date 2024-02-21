@@ -1,9 +1,9 @@
 import postController from "./post.controller.js";
 import reactionController from "./reaction.controller.js";
-import authController from "./auth.Controller.js";
+import userController from "./user.controller.js";
 import commentController from "./comment.controller.js";
 export {
-  authController,
+  userController,
   postController,
   commentController,
   reactionController,

@@ -1,9 +1,9 @@
-import { post_Service } from "../service/post.service.js";
-import { handle_error } from "../lib/utils.js";
+import { postService } from "../service/post.service.js";
+import { errorHandler } from "../lib/utils.js";
 
 export const createPost = async (req, res) => {
   try {
-    const response = post_Service.createPost(req);
+    const response = postService.createPost(req);
     res.status(201).send({
       success: true,
       message: "new post created successfully",
@@ -11,48 +11,60 @@ export const createPost = async (req, res) => {
     });
   } catch (error) {
     console.log("create post",error);
-    handle_error(res,error)
+    errorHandler(res,error)
   }
 };
 export const getAllPost = async (req, res) => {
-  // let page = req.query.page; //starts from 0
-  let users = await post_Service.getPostPaginated(req);
-  if (users && users.length > 0) {
-    res.status(200).json(users);
+  let response = await postService.getPostPaginated(req);
+  if (response.posts && response.posts.length > 0) {
+    res.status(200).send({
+      success: true,
+      message: "Posts fetched successfully",
+      posts: response.posts,
+    });
   } else {
-    res.status(204).json("users not found");
+    res.status(204);
   }
 };
 
 export const getPost = async (req, res) => {
   try {
-    const response = await post_Service.getPost(req);
-    res.status(200).json(response.post);
+    const response = await postService.getPost(req);
+    res.status(200).send({
+      success: true,
+      message: "Post fetched successfully",
+      post: response.post,
+    });
   } catch (error) {
-    handle_error(res,error)
+    errorHandler(res,error)
   }
 };
+
 export const deletePost = async (req, res) => {
   try {
-    const response = await post_Service.deletePost(req);
-     console.log(response)
+    const response = await postService.deletePost(req);
+    
     return res.status(200).send({
       success: true,
-      message: "post deleted",
+      message: "post deleted successfully",
       data: response.data,
     });
   } catch (error) {
-    handle_error(res, error);
+    errorHandler(res, error);
   }
 };
 
 export const updatePost = async (req, res) => {
   try {
-    const response = await post_Service.updatePost(req);
-    console.log(response.data);
-    return res.send(response.data);
+    const response = await postService.updatePost(req);
+console.log(response.data)
+    return res.send({
+      success: true,
+      message: "post updated successfully",
+      // data: response.data,
+    });
   } catch (error) {
-    handle_error(res, error);
+    errorHandler(res, error);
   }
 };
 

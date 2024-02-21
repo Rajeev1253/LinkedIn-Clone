@@ -18,10 +18,6 @@ app.use("/", routes);
 
 //connection
 connectDB();
-app.get("/",(req,res)=>{
-    res.send(`<h1>Welcome to home page</h1>`)
-
-})
 
 const port=process.env.PORT|| 8080;
 app.listen(port,()=>{
