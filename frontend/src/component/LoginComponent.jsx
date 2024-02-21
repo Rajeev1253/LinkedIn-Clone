@@ -19,7 +19,9 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/authAction";
+
 const LoginComponent = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +29,7 @@ const LoginComponent = () => {
 
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const { loading, userInfo, error, success } = useSelector(
     (state) => state.auth
   );
@@ -34,6 +37,7 @@ const LoginComponent = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
   const handleSubmit = async () => {
     console.log("frontend", email, password);
     dispatch(loginUser({ email, password }))
@@ -113,7 +117,7 @@ const LoginComponent = () => {
                           <IconButton
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            // onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
                             {showPassword ? (

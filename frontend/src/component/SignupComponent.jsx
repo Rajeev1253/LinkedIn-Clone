@@ -6,71 +6,74 @@ import { Button, TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import google from "../assets/google-icon.png";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authAction";
 
-
-
 const SignupComponent = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [Error,setError]= useState({
-    password:null,
-    email:null,
-  })
-  const [data,setdata]=useState({
-    email:"",
-    password:""
-  })
+  const [Error, setError] = useState({
+    password: null,
+    email: null,
+  });
+  const [data, setdata] = useState({
+    email: "",
+    password: "",
+  });
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const navigate= useNavigate()
-  const {loading,userInfo,error,success}=useSelector((state)=>state.auth)
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const { loading, userInfo, error, success } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
 
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
   function password_validate(password) {
-    return /[A-Z]/.test(password) && /[0-9]/.test(password) && !/[aeiou]/.test(password) && /^[@#][A-Za-z0-9]{7,13}$/.test(password);
-}
-  const handleChangeEmail =(e)=>{
-    const data = e.target.value
-    if(data === ""  && !isValidEmail(data)){
-      setError((pre)=>({...pre,email:true}));
-    }
-    else{
-      setError((pre)=>({...pre,email:false}))
-    }
-    setdata((pre)=>({...pre,email:data}))
+    return (
+      /[A-Z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      !/[aeiou]/.test(password) &&
+      /^[@#][A-Za-z0-9]{7,13}$/.test(password)
+    );
   }
-  const handleChangPassword=(e)=>{
-    const data = e.target.value
-    if(data === "" && !password_validate(data)){
-      setError((pre)=>({...pre,password:true}))
+  const handleChangeEmail = (e) => {
+    const data = e.target.value;
+    if (data === "" && !isValidEmail(data)) {
+      setError((pre) => ({ ...pre, email: true }));
+    } else {
+      setError((pre) => ({ ...pre, email: false }));
     }
-    else{
-      setError((pre)=>({...pre,password:false}))
+    setdata((pre) => ({ ...pre, email: data }));
+  };
+  
+  const handleChangPassword = (e) => {
+    const data = e.target.value;
+    if (data === "" && !password_validate(data)) {
+      setError((pre) => ({ ...pre, password: true }));
+    } else {
+      setError((pre) => ({ ...pre, password: false }));
     }
-    setdata((pre)=>({...pre,password:data}))
-   
-  }
+    setdata((pre) => ({ ...pre, password: data }));
+  };
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const handleSubmit = async() => {
-    
-      dispatch(registerUser(data)).unwrap().then((res)=> {
-        if(res.data.message === "user Register Successfully"){
-          navigate('/login')
+  const handleSubmit = async () => {
+    dispatch(registerUser(data))
+      .unwrap()
+      .then((res) => {
+        if (res.data.message === "user Register Successfully") {
+          navigate("/login");
         }
-      
-        console.log("response - ",res);
-      })
-     
+
+        console.log("response - ", res);
+      });
   };
 
   return (
@@ -101,10 +104,10 @@ const SignupComponent = () => {
                 />
               </div>
             </div>
-            <div className="label2"><label>Password (6+ characters)</label></div>
+            <div className="label2">
+              <label>Password (6+ characters)</label>
+            </div>
             <div className="password">
-            
-
               <FormControl
                 sx={{
                   m: 1,
@@ -115,15 +118,13 @@ const SignupComponent = () => {
                 }}
                 variant="filled"
               >
-                <InputLabel htmlFor="filled-adornment-password">
-                  
-                </InputLabel>
+                <InputLabel htmlFor="filled-adornment-password"></InputLabel>
                 <OutlinedInput
-                Input
-                label="password"
+                  Input
+                  label="password"
                   id="filled-adornment-password"
                   size="small"
-                  sx={{ width: "348px", marginTop:"-10px"}}
+                  sx={{ width: "348px", marginTop: "-10px" }}
                   type={showPassword ? "text" : "password"}
                   value={data.password}
                   onChange={handleChangPassword}
@@ -158,7 +159,11 @@ const SignupComponent = () => {
               </p>
             </div>
             <div className="sign-button">
-              <Button variant="contained" sx={{ textTransform: "capitalize" }} onClick={handleSubmit}>
+              <Button
+                variant="contained"
+                sx={{ textTransform: "capitalize" }}
+                onClick={handleSubmit}
+              >
                 Agree & join
               </Button>
             </div>

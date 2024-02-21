@@ -13,7 +13,7 @@ import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
-const Card2 = () => {
+const Card2 = ({props}) => {
   return (
     <div className="card">
       <Box width="555px">
