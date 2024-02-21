@@ -32,9 +32,8 @@ const register = async (req) => {
     const hashed_password = await hashPassword(password);
 
     const user = await userModel.create({ email, password: hashed_password });
-    
-    return { user };
 
+    return { user };
   } catch (error) {
     console.log(error);
     throw error;
@@ -44,7 +43,7 @@ const register = async (req) => {
 const login = async (payload) => {
   try {
     const { email, password } = payload.body;
-
+    console.log(email, password);
     if (!email || !password) {
       throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
@@ -53,7 +52,7 @@ const login = async (payload) => {
     }
 
     const user = await userModel.findOne({ email });
-
+    // console.log(user);
     if (!user) {
       throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
@@ -70,11 +69,11 @@ const login = async (payload) => {
       });
     }
 
-    const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    const token = JWT.sign({ _id: user._id }, "Zenmonk", {
       expiresIn: "7d",
     });
-
-    return {user, token}
+    console.log(token);
+    return { user, token };
   } catch (error) {
     throw error;
   }

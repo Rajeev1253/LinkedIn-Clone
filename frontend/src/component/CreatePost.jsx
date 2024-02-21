@@ -25,12 +25,18 @@ const CreatePost = () => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.userToken); 
-  const userId = useSelector((state)=>state.auth.userInfo._id)
-  const handleSubmit = ()=>{
-    dispatch(createPost(token,userId,title))
-    setOpen(false)
-  }
+  const token = useSelector((state) => state.auth.userToken);
+  const userId = useSelector((state) => state.auth.userInfo._id);
+  const handleSubmit = () => {
+    console.log(userId, ".....", title, "??????");
+    const obj = {
+      token: token,
+      userId: userId,
+      title: title,
+    };
+    dispatch(createPost(obj));
+    setOpen(false);
+  };
 
   return (
     <>
@@ -38,7 +44,7 @@ const CreatePost = () => {
         sx={{
           textTransform: "capitalize",
           border: "1px solid black",
-          borderRadius:"15px",
+          borderRadius: "15px",
           width: "357px",
         }}
         onClick={() => setOpen(true)}
@@ -70,7 +76,9 @@ const CreatePost = () => {
               disableUnderline="true"
               multiline="true"
               value={title}
-              onChange={(e)=>{setTitle(e.target.value)}}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
               placeholder="What do you want to talk about"
               sx={{ width: "100%", height: "%" }}
             />
@@ -129,7 +137,6 @@ const CreatePost = () => {
               autoFocus
               variant="filled"
               onClick={handleSubmit}
-
             >
               Post
             </Button>
