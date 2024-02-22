@@ -2,16 +2,34 @@ import { postModel } from "../models/postModel.js";
 
 export const createPost = async (payload) => {
   try {
+    const files = payload.files;
+    
+    console.log("fsdjhgjk",files)
+    // const image1=files[0]?.path;
+    // const image2=files[1]?.path;
+    // const image3=files[2]?.path;
+    // const image4=files[3]?.path;
+    let images = [];
+    files.map((i)=>{
+      images.push(i.path);
+      console.log(i.path)
+    })
+    console.log(images)
     const { userId, title } = payload.body;
     if(!userId && !title){
       console.log("userid or title not found")
     }
-    console.log(userId, title)
+    const newPostData = {
+      // userid: payload.body.userid,
+      title: payload.body.title,
+      body: payload.body.body,
+      images: images,
+  };
 
     // handle validations here
 
-    const post = new postModel({ userId:userId, title:title}).save();
-    return { post };
+    const post = new postModel(newPostData).save();
+    return { post,newImages:images };
   } catch (error) {
     console.log(error);
     throw error;

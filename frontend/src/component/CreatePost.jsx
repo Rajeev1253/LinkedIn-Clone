@@ -20,10 +20,11 @@ import {
 } from "@mui/material";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../features/post/postAction";
+import { createPost, fetchPost } from "../features/post/postAction";
 const CreatePost = () => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
+  const [file,setfile]=useState("")
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.userToken);
   const userId = useSelector((state) => state.auth.userInfo._id);
@@ -35,7 +36,9 @@ const CreatePost = () => {
       title: title,
     };
     dispatch(createPost(obj));
+    dispatch(fetchPost(token  ))
     setOpen(false);
+
   };
 
   return (
