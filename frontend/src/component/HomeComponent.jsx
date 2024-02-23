@@ -56,7 +56,7 @@ const HomeComponent = () => {
             {post?.data?.posts?.map((post) => (
               <Card2
                 tittle={post.title}
-                body={post.body}
+                image ={post.image}
               />
 
              

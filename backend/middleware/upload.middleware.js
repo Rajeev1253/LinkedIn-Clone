@@ -9,7 +9,8 @@ import path from "path";
            return cb(null, ("uploads"))
         },
         filename: (req, file, cb) => {
-           return cb(null, `${Date.now()}_${file.originalname}`)
+         
+         return cb(null, `${Date.now()}_${file.originalname}`)
         }
  
     })

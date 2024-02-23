@@ -4,10 +4,12 @@ import { errorHandler } from "../lib/utils.js";
 export const createPost = async (req, res) => {
   try {
     const response = postService.createPost(req);
+    console.log("dfsjkklsdajflksjflksd",req.files)
     res.status(201).send({
       success: true,
       message: "new post created successfully",
       post: response.post,
+      image: req.files[0].filename
     });
   } catch (error) {
     console.log("create post",error);

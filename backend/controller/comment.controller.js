@@ -27,7 +27,7 @@ const deleteComment = async (req, res) => {
 };
 const fetchComment = async (req, res) => {
   try {
-    const response = await commentService.fetchComment();
+    const response = await commentService.fetchComment(req);
     console.log(response.comment)
     return response.comment 
     //  res.status(200).json(response.comment);

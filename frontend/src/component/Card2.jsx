@@ -16,6 +16,7 @@ import PostAddOutlinedIcon from "@mui/icons-material/PostAddOutlined";
 import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 const Card2 = (props) => {
+  console.log(props);
   return (
     <div className="card">
       <Box width="471px">
@@ -34,8 +35,9 @@ const Card2 = (props) => {
           <CardMedia
             component="img"
             height="200px"
-            image="https://source.unsplash.com/random"
+            image={`http://localhost:8080/${props?.image[0]}`} 
           />
+         
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               React

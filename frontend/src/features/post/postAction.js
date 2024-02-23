@@ -25,22 +25,23 @@ export const fetchPost = createAsyncThunk("post/fetch", async (token) => {
 
 export const createPost = createAsyncThunk(
   "post/create",
-  async ({ token, userId, title }) => {
-    console.log("action", token, " title ", title);
+  async (formData,{getState}) => {
+    // console.log("action", formData.get("images"));
 
     try {
+      let state = getState()
       const config = {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
+          "Content-Type": "multipart/form-data",
+          Authorization: state.auth.token,
         },
       };
       const res = await axios.post(
         `${backendURL}/posts`,
-        { userId, title },
+        formData,
         config
       );
-      // console.log(res)
+      console.log("Create post🎶🎶",res.data)
       return res;
     } catch (error) {
       if (error.response && error.response.data.message) {
