@@ -17,7 +17,8 @@ export const fetchComment = async (payload) => {
   // console.log(payload.params)
   const postId = payload.params
   console.log(postId)
-  const comment = await commentModel.findById({postId});
+  const comment = await commentModel.find({postId:postId.id});
+  console.log("service",comment)
   return comment;
 };
 export const updateComment = async (payload) => {

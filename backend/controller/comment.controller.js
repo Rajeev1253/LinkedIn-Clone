@@ -28,8 +28,12 @@ const deleteComment = async (req, res) => {
 const fetchComment = async (req, res) => {
   try {
     const response = await commentService.fetchComment(req);
-    console.log(response.comment)
-    return response.comment 
+    console.log("comment",response)
+   return res.status(200).send({
+      success:true,
+      message:"post fetch successfully",
+      comment:response
+    })
     //  res.status(200).json(response.comment);
   } catch (error) {
     errorHandler(req,error)
