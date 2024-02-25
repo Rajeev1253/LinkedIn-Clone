@@ -1,24 +1,39 @@
 import { commentModel } from "../models/commentModel.js";
 
 export const createComment = async (payload) => {
-  const { userId, postId, body } = payload.body;
-  if (!body) {
-    throw Object.assign(new Error("body is required"), { code: 400 });
+  const { comment } = payload.body;
+  console.log("payload.body: ", payload.body);
+  // console.log("comment: ", comment);
+  const { postId } = payload.params;
+  console.log("postId: ", postId);
+  const { _id } = payload.user;
+  console.log("sgsdga", _id);
+  if (!comment) {
+    throw Object.assign(new Error("comment is required"), { code: 400 });
   }
-  const comment = await new commentModel({ userId, postId, body }).save();
-  return { comment };
+  const newCommentData = {
+    userId: _id,
+    postId,
+    body: comment,
+  };
+  console.log("newCommentData: ", newCommentData);
+  const response = await new commentModel(newCommentData).save();
+  return response;
 };
 export const deleteComment = async (payload) => {
   const { userId } = payload.body;
-  const comment =await commentModel.deleteOne({ _id: payload.params.id, userId });
+  const comment = await commentModel.deleteOne({
+    _id: payload.params.id,
+    userId,
+  });
   return comment;
 };
 export const fetchComment = async (payload) => {
   // console.log(payload.params)
-  const postId = payload.params
-  console.log(postId)
-  const comment = await commentModel.find({postId:postId.id});
-  console.log("service",comment)
+  const postId = payload.params;
+  console.log(postId);
+  const comment = await commentModel.find({ postId: postId.id });
+  console.log("service", comment);
   return comment;
 };
 export const updateComment = async (payload) => {
