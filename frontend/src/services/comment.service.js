@@ -14,5 +14,7 @@ export const create = async (payload, config) => {
     config
   );
 };
-export const fetch = async (payload) =>
-  await axiosApi.get(PATHS.fetch, payload);
+export const fetch = async (payload, config) => {
+  // console.log("payload: ", payload);
+  await axiosApi.get(`${PATHS.fetch}${payload}`, config);
+};

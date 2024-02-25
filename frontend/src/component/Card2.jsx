@@ -21,6 +21,7 @@ import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, fetchComment } from "../features/comment/commentAction";
+import CommentCard from "./CommentCard";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -42,6 +43,8 @@ const Card2 = ({ post }) => {
   //   userId: userId,
   //   comment: comment,
   // };
+  const comments = useSelector((state) => state.comment.comment[post._id]);
+  console.log("comments: ", comments);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -56,6 +59,15 @@ const Card2 = ({ post }) => {
       // console.log("post", post._id);
 
       dispatch(createComment({ postId: post._id, comment: comment }));
+      dispatch(fetchComment({ postId: post._id }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleComment = (e) => {
+    e.preventDefault();
+    try {
+      dispatch(fetchComment({ postId: post._id }));
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +83,7 @@ const Card2 = ({ post }) => {
               <Typography sx={{ pl: 1 }}>Rajeev Goyal</Typography>
             </Stack>
             <Typography gutterBottom variant="h5" component="div" color="grey">
-              {post.tittle}
+              {post.title}
             </Typography>
           </CardContent>
 
@@ -107,6 +119,7 @@ const Card2 = ({ post }) => {
               <Button
                 sx={{ color: "gray" }}
                 startIcon={<SmsRoundedIcon sx={{ color: "grey", ml: 4 }} />}
+                onClick={handleComment}
               >
                 Comment
               </Button>
@@ -127,32 +140,39 @@ const Card2 = ({ post }) => {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Stack
-                display="flex"
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-              >
+              <Stack display="flex" direction="row" justifyContent="center">
                 <Box>
                   <Avatar />
                 </Box>
-                <Box width="396px" height="22px">
-                  <TextField
-                    sx={{
-                      width: "395px",
-                      height: "22px",
-                      borderRadius: "20px",
-                    }}
-                    placeholder="Add a comment"
-                    value={comment}
-                    onChange={handleChange}
-                  ></TextField>
+                <Box width="396px">
+                  <Stack
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    <Stack>
+                      <TextField
+                        sx={{
+                          width: "395px",
+                          borderRadius: "20px",
+                        }}
+                        placeholder="Add a comment"
+                        value={comment}
+                        onChange={handleChange}
+                      ></TextField>
+                      <Stack display="flex" justifyContent="flex-start">
+                        <Button onClick={handleSubmit}>Post</Button>
+                      </Stack>
+                    </Stack>
+                  </Stack>
                 </Box>
               </Stack>
-              <Stack display="flex" justifyContent="flex-start">
-                <Button onClick={handleSubmit}>Post</Button>
-              </Stack>
             </CardContent>
+            <Stack>
+              {comments?.map((i) => (
+                <CommentCard body={i.body} />
+              ))}
+            </Stack>
           </Collapse>
         </Card>
       </Box>

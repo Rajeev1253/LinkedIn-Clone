@@ -31,9 +31,11 @@ export const deleteComment = async (payload) => {
 export const fetchComment = async (payload) => {
   // console.log(payload.params)
   const postId = payload.params;
-  console.log(postId);
-  const comment = await commentModel.find({ postId: postId.id });
-  console.log("service", comment);
+  // console.log(postId);
+  const comment = await commentModel
+    .find(postId)
+    .sort({ createdAt: "descending" });
+  console.log(`${postId} comments are:- `, comment);
   return comment;
 };
 export const updateComment = async (payload) => {

@@ -28,15 +28,9 @@ const deleteComment = async (req, res) => {
 const fetchComment = async (req, res) => {
   try {
     const response = await commentService.fetchComment(req);
-    console.log("comment",response)
-   return res.status(200).send({
-      success:true,
-      message:"post fetch successfully",
-      comment:response
-    })
-    //  res.status(200).json(response.comment);
+    return res.status(200).send(response);
   } catch (error) {
-    errorHandler(req,error)
+    errorHandler(req, error);
   }
 };
 const updateComment = async (req, res) => {
@@ -48,7 +42,7 @@ const updateComment = async (req, res) => {
       data: response.data,
     });
   } catch (error) {
-   errorHandler(req,error)
+    errorHandler(req, error);
   }
 };
 const getAllcomments = async (req, res) => {

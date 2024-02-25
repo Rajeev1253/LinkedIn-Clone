@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ACTION_TYPE } from "./commentActionType";
-import { create } from "../../services/comment.service";
+import { create, fetch } from "../../services/comment.service";
+import axios from "axios";
 
 export const createComment = createAsyncThunk(
   ACTION_TYPE.ADD_COMMENT,
@@ -15,7 +16,7 @@ export const createComment = createAsyncThunk(
         },
       };
       const res = await create({ postId, comment }, config);
-      return res;
+      return { data: res.data, postId };
     } catch (error) {
       console.log("error: ", error);
       if (error.response && error.response.data.message) {
@@ -28,18 +29,23 @@ export const createComment = createAsyncThunk(
 );
 export const fetchComment = createAsyncThunk(
   ACTION_TYPE.FETCH_COMMENT,
-  async ({ userId, postId, body }, { getState }) => {
+  async ({ postId }, { getState }) => {
+    console.log("postId: ", postId);
     try {
       let state = getState();
       const config = {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: state.auth.token,
+          Authorization: state.auth.userToken,
         },
       };
-      const res = await fetch({ userId, postId, body }, config);
-      return res;
+      const res = await axios.get(
+        `http://localhost:8080/comment/${postId}`,
+        config
+      );
+      console.log("res: ", res);
+      return { data: res.data, postId };
     } catch (error) {
+      console.log("error: ", error);
       if (error.response && error.response.data.message) {
         return error.response.data.message;
       } else {
