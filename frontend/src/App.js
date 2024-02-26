@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import { Routes, Route } from "react-router-dom";
 import CommentCard from "./component/CommentCard";
 import CreatePost from "./component/CreatePost";
+import UserProfile from "./component/UserProfile";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/card" element={<CommentCard />}></Route>
         <Route path="/post" element={<CreatePost />}></Route>
+        <Route path="/profile" element={<UserProfile />}></Route>
       </Routes>
     </div>
   );

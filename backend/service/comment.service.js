@@ -2,13 +2,9 @@ import { commentModel } from "../models/commentModel.js";
 
 export const createComment = async (payload) => {
   const { comment } = payload.body;
-  console.log("payload.body: ", payload.body);
-  // console.log("comment: ", comment);
   const { postId } = payload.params;
-  console.log("postId: ", postId);
   const { _id } = payload.user;
-  console.log("sgsdga", _id);
-  if (!comment) {
+  if (!comment && comment === " ") {
     throw Object.assign(new Error("comment is required"), { code: 400 });
   }
   const newCommentData = {
