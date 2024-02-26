@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/Linkedin.svg'
 import './Style/navbar.css'
-import { AppBar, IconButton, Toolbar,Box } from '@mui/material'
+import { AppBar, IconButton, Toolbar,Box, Avatar } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,7 +10,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import WorkIcon from '@mui/icons-material/Work';
 import SmsRoundedIcon from '@mui/icons-material/SmsRounded';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-
+import { useNavigate, Link } from "react-router-dom";
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -78,12 +78,13 @@ const Navbar = () => {
           </Search>
         </Box>
         <Box  component='div' display='flex'  fontSize='large'  sx={{color:"grey", width:"40px", height:"24px" }} >
-       <HomeIcon sx={{mr:6}}/>
-       <PeopleAltIcon sx={{mr:6}}  />
+        
+       <Link to="/home"><HomeIcon sx={{mr:6}}/> </Link>
+       <Link to="/network"><PeopleAltIcon sx={{mr:6}}  /> </Link>
        <WorkIcon sx={{mr:6}} />
        <SmsRoundedIcon sx={{mr:6}} />
        <NotificationsIcon sx={{mr:6}}/>
-
+      <Link to="/profile"> <Avatar/></Link>
         </Box>
 
         </Box>

@@ -75,7 +75,7 @@ const Card2 = ({ post }) => {
   // console.log(props);
   return (
     <div className="card">
-      <Box width="471px">
+      <Box width="555px">
         <Card>
           <CardContent>
             <Stack display="flex" direction="row">

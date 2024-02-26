@@ -78,8 +78,21 @@ const login = async (payload) => {
     throw error;
   }
 };
+const getUser = async(req)=>{
+  const userId = req.user._id
+  console.log("user",userId)
+  if(!userId){
+    throw Object.assign(new Error(), {
+      name: "BAD_REQUEST",
+      message: `User not found`,
+    });
+  }
+  const users =  await userModel.find({"_id":{$ne:userId}})
+  return users
+}
 
 export const userService = {
   login,
   register,
+  getUser
 };

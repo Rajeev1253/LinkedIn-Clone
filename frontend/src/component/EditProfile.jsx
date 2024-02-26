@@ -6,6 +6,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import CreateOutlined from "@mui/icons-material/CreateOutlined";
+import { Typography, Stack, Input } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+
 
 const EditProfile = () => {
   const [open, setOpen] = React.useState(false);
@@ -18,11 +22,18 @@ const EditProfile = () => {
   };
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}></Button>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        <CreateOutlined />
+      </Button>
       <Dialog
+
         open={open}
         onClose={handleClose}
         PaperProps={{
+          sx: {
+            width: "672px",
+            height: "90%",
+          },
           component: "form",
           onSubmit: (event) => {
             event.preventDefault();
@@ -37,10 +48,66 @@ const EditProfile = () => {
         <DialogTitle>Edit Profile</DialogTitle>
         <DialogContent>
           <DialogContentText>* Indicate Required</DialogContentText>
+          <Stack sx={{pt:3}}>
+            <Typography>First Name*</Typography>
+            <TextField size="small"></TextField>
+          </Stack>
+          <Stack sx={{pt:3}}>
+            <Typography>Last   Name*</Typography>
+            <TextField size="small"></TextField>
+          </Stack>
+          <Stack sx={{pt:3}}>
+            <Typography>Additional  Name</Typography>
+            <TextField size="small"></TextField>
+          </Stack>
+          <Stack sx={{pt:4}}>
+            <Typography fontWeight="600" fontSize="25px">Current Posistion</Typography>
+            <Stack display="flex" flexDirection="row" sx={{pt:3}}>
+            <Button color="primary" startIcon={<AddIcon color="primary"/>}>
+              Add new Posistion
+            </Button>
+            </Stack>
+            <Stack>
+            <Typography>Industry*</Typography>
+            <TextField size="small"></TextField>
+            <Typography>Learn more about industry option</Typography>
+          </Stack>
+          </Stack>
+          <Stack sx={{pt:3}}>
+            <Typography fontWeight="600" fontSize="25px">Education</Typography>
+            <Stack>
+            <Typography>School*</Typography>
+            <TextField size="small"></TextField>
+          </Stack>
+          <Stack display="flex" flexDirection="row" sx={{pt:3}}>
+            <AddIcon color="primary"/>
+            <Button color="primary" startIcon={<AddIcon color="primary"/>}>
+                
+            </Button>
+            </Stack>
+          </Stack>
+          <Stack sx={{pt:3}}>
+          <Typography fontWeight="600" fontSize="25px">Location</Typography>
+          <Stack>
+            <Typography>Country/Region</Typography> 
+             <TextField size="small"></TextField>
+          </Stack>
+          <Stack sx={{pt:3}}>
+            <Typography>City</Typography>  
+            <TextField size="small"></TextField>
+          </Stack>
+          </Stack>
+
+          <Stack sx={{pt:3}}>
+          <Typography fontWeight="600" fontSize="20px">Contact Info</Typography>
+          <Typography>Add or edit your profile URL, email, and more</Typography>
+          <Button sx={{width:"170px",pl:"0",pt:3}}>Edit contact info</Button>
+       
+
+          </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
+          <Button variant="contained" onClick={handleClose}>Save</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

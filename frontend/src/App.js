@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import CommentCard from "./component/CommentCard";
 import CreatePost from "./component/CreatePost";
 import UserProfile from "./component/UserProfile";
+import Network from "./pages/network/Network";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,8 @@ function App() {
         <Route path="/card" element={<CommentCard />}></Route>
         <Route path="/post" element={<CreatePost />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
+        
+        <Route path="/network" element={<Network />}></Route>
       </Routes>
     </div>
   );

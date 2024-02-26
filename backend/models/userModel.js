@@ -12,18 +12,31 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     default: "ABCD",
-    required:true
+    required: true
   },
   followers: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "accepted", "rejected"],
+        default:"pending"
+      }
     },
   ],
   following: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      status: {
+        type: String,
+        enum: ["pending", "accepted", "rejected"]
+      }
     },
   ],
 

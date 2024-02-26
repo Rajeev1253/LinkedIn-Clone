@@ -21,27 +21,27 @@ const UserProfile = () => {
           height: "100vh",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center   ",
+          paddingTop:"20px",    
+          alignItems: "center",
         }}
       >
-        <Box width="55%">
+        <Box width="804px">
           <Stack>
             <Stack position="relative">
               <img src={profile}></img>
-            </Stack>
-            <Avatar
+              <Avatar
               sx={{
                 width: "120px",
                 height: "120px",
                 position: "absolute",
-                top: "220px",
-                left: "320px",
+                top: "140px",
+                left: "50px",
               }}
             />
+            </Stack>
             <Stack
               sx={{
-                width: "671px",
+                width: "780 px",
                 height: "328px",
                 bgcolor: "white",
                 pt: 4,
@@ -49,10 +49,11 @@ const UserProfile = () => {
               }}
             >
               <Stack display="flex" alignItems="end" paddingRight="30px">
-                <Button startIcon={<EditProfile />}></Button>
-                <IconButton startIcon={<EditProfile />}>
-                  <CreateOutlinedIcon />
-                </IconButton>
+                <Button startIcon={<EditProfile/>}> 
+                </Button>
+              
+              
+                
               </Stack>
               <Stack display="flex" justifyContent="flex-end">
                 <img sr></img>

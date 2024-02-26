@@ -48,12 +48,12 @@ const HomeComponent = () => {
         alignItems="center"
         paddingTop="20px"
       >
-        <Card sx={{ width: "471px", height: "116px" }}>
+        <Card sx={{ width: "555px", height: "116px" }}>
           <CardContent>
             <Button
               sx={{ textTransform: "capitalize" }}
               startIcon={<Avatar sx={{ width: "48px", height: "48px" }} />}
-              endIcon={<CreatePost sx={{ width: "439px", height: "24px" }} />}
+              endIcon={<CreatePost sx={{ width: "555px", height: "24px" }} />}
             ></Button>
             <Stack
               display="flex"
