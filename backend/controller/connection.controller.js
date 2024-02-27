@@ -41,7 +41,7 @@ export const updateRequest=async(req,res)=>{
 
         const response = await connectionService.updateRequest(req)
         console.log(response);
-        return  res.status(200).send({
+        return res.status(200).send({
             success:true,
             message:"Request get successfully",
            connection:response

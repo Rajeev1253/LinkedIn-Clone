@@ -5,12 +5,12 @@ export const postRequest = async (req) => {
         const userId = req.params.userId;
 
         // console.log('userId: ', userId);
-        const { _id } = req.user;
+        const {_id } = req.user;
         // console.log('_id: ', _id);
 
         console.log('userId: ', userId, _id);
         const newRequest = new connectionModel({ connectionBy: _id, connectedTo: userId }).save();
-        //    return newRequest
+           return newRequest
 
     }
     catch (error) {
