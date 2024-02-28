@@ -10,7 +10,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import WorkIcon from '@mui/icons-material/Work';
 import SmsRoundedIcon from '@mui/icons-material/SmsRounded';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -82,7 +82,7 @@ const Navbar = () => {
        <Link to="/home"><HomeIcon sx={{mr:6}}/> </Link>
        <Link to="/network"><PeopleAltIcon sx={{mr:6}}  /> </Link>
        <WorkIcon sx={{mr:6}} />
-       <SmsRoundedIcon sx={{mr:6}} />
+      <Link to="/messaging"><SmsRoundedIcon sx={{mr:6}} /> </Link> 
        <NotificationsIcon sx={{mr:6}}/>
       <Link to="/profile"> <Avatar/></Link>
         </Box>

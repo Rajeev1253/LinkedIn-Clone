@@ -9,6 +9,7 @@ import UserProfile from "./component/UserProfile";
 import Network from "./pages/network/Network";
 import InvitationPage from "./pages/Invitation/InvitationPage";
 import InvitationSent from "./pages/Invitation/InvitationSent";
+import MessagePage from "./pages/messages/MessagePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/post" element={<CreatePost />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
         <Route path="/invitation" element={<InvitationPage />}></Route>
+        <Route path="/messaging" element={<MessagePage />}></Route>
         
         <Route path="/invitationSent" element={<InvitationSent/>}></Route>
         
