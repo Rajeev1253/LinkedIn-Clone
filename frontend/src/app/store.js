@@ -4,6 +4,7 @@ import postReducer from "../features/post/postSlice";
 import commentReducer from "../features/comment/commentSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
+import connectionReducer from "../features/connection/connectionSlice.js";
 const persistConfig = {
   key: "root",
   storage,
@@ -12,6 +13,8 @@ const rootreducer = combineReducers({
   auth: authReducer,
   post: postReducer,
   comment: commentReducer,
+  connection:connectionReducer,
+
 });
 const persistedReducer = persistReducer(persistConfig, rootreducer);
 export const store = configureStore({

@@ -9,6 +9,8 @@ import {
   Avatar,
   Button,
 } from "@mui/material";
+import { Link } from "react-router-dom";
+import Request from "./Request";
 
 const Invitation = () => {
   return (
@@ -21,48 +23,29 @@ const Invitation = () => {
       >
         <Card
           sx={{
-            width: "804px",
+            width: "850px",
             bgcolor: "white",
             borderRadius: "12px ",
             marginTop: "20px",
           }}
         >
           <CardContent>
+          <Stack display="flex" flexDirection="row" justifyContent="space-between">
             <Typography paddingBottom="15px" alignItems="center">
               Invitations
             </Typography>
+            <Link to="/invitation">
+
+            <Button sx={{width:"75px",height:"32px", color:"grey"}}>
+              Manage
+            </Button>
+            </Link>
+
+          </Stack>
+            
             <hr />
           </CardContent>
-          <CardContent>
-            <Stack
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-between"
-            >
-              <Stack display="flex" flexDirection="row">
-                <Avatar sx={{ width: "72px", height: "72px" }}></Avatar>
-                <Typography>UserName</Typography>
-              </Stack>
-              <Stack
-                width="165px"
-                display="flex"
-                flexDirection="row"
-                alignItems="center"
-              >
-                <Button>Ignore</Button>
-                <Button
-                  variant="outlined"
-                  sx={{
-                    width: "81.72px",
-                    height: "32px",
-                    borderRadius: "15px ",
-                  }}
-                >
-                  Accept
-                </Button>
-              </Stack>
-            </Stack>
-          </CardContent>
+          <Request/>
         </Card>
       </Stack>
       <Stack></Stack>

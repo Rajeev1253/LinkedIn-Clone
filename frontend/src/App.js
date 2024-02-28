@@ -7,6 +7,9 @@ import CommentCard from "./component/CommentCard";
 import CreatePost from "./component/CreatePost";
 import UserProfile from "./component/UserProfile";
 import Network from "./pages/network/Network";
+import InvitationPage from "./pages/Invitation/InvitationPage";
+import InvitationSent from "./pages/Invitation/InvitationSent";
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +20,9 @@ function App() {
         <Route path="/card" element={<CommentCard />}></Route>
         <Route path="/post" element={<CreatePost />}></Route>
         <Route path="/profile" element={<UserProfile />}></Route>
+        <Route path="/invitation" element={<InvitationPage />}></Route>
+        
+        <Route path="/invitationSent" element={<InvitationSent/>}></Route>
         
         <Route path="/network" element={<Network />}></Route>
       </Routes>

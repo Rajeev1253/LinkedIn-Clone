@@ -5,6 +5,7 @@ console.log(BASE_URL)
 export const axiosApi =  axios.create({
   baseURL: BASE_URL,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    "auth":"sdfghjkl;"
   }
 })

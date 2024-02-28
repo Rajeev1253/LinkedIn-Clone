@@ -9,7 +9,7 @@ export const create = async (payload, config) => {
   await axiosApi.post(
     `${PATHS.create}${payload.postId}`,
     {
-      comment: payload.comment,
+      comment: payload.commen,
     },
     config
   );

@@ -26,19 +26,19 @@ export const commentSlice = createSlice({
     });
     binders.addCase(fetchComment.rejected, (state, action) => {
       console.log("fetchComment.rejected: ");
-      state.isLoading = false;
+      state.isLoading = false
       state.error = action.error.message;
     });
     binders.addCase(createComment.pending, (state) => {
-      state.isLoading = true;
+      state.isLoading = true
     });
     binders.addCase(createComment.fulfilled, (state, action) => {
-      state.isLoading = false;
+      state.isLoading = false
       state.comment = [action.payload.postId].unshift(action.payload.data);
     });
     binders.addCase(createComment.rejected, (state, action) => {
       state.error = action.error.message;
-      state.isLoading = false;
+      state.isLoading = false
     });
   },
 });
