@@ -114,8 +114,6 @@ const SignupComponent = () => {
             <div className="password">
               <FormControl
                 sx={{
-                  m: 1,
-                  width: "25ch",
                   "& .MuiFilledInput-underline:after": {
                     borderBottom: "none",
                   },
@@ -123,17 +121,16 @@ const SignupComponent = () => {
                 variant="filled"
               >
                 <InputLabel htmlFor="filled-adornment-password"></InputLabel>
-                <OutlinedInput
+                <TextField
                   Input
                   label="password"
                   id="filled-adornment-password"
                   size="small"
-                  sx={{ width: "348px", marginTop: "-10px" }}
                   type={showPassword ? "text" : "password"}
                   value={data.password}
                   onChange={handleChangPassword}
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment position="center">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}

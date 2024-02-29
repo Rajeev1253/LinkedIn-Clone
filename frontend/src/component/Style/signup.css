@@ -54,7 +54,6 @@
 .input-box2{
     display: flex;
     flex-direction: column;
-    padding-top:30px;
     align-items: center;
 }
 .para{
@@ -168,10 +167,9 @@ label{
     padding-left:20px ;
     display: flex;
     flex-direction: column;
-    margin-top: 0px;
 }
 .label2{
-    padding-top: 24px;
+    padding-top: 24px;  
 }
 .show{
     color:#0a66c2,

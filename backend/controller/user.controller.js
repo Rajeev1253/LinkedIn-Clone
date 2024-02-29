@@ -28,25 +28,35 @@ export const login = async (req, res) => {
     errorHandler(res, error);
   }
 };
-export const getUser = async(req,res)=>{
-  try{
+export const getUser = async (req, res) => {
+  try {
     const response = await userService.getUser(req);
     return res.status(200).send({
-      success:true,
-      message:"user fetch successfully",
-      users:response  
-    })
-    
+      success: true,
+      message: "user fetch successfully",
+      users: response,
+    });
+  } catch (error) {
+    console.log(error);
   }
-  catch(error){
-    console.log(error)
+};
+export const updateUser = async (req, res) => {
+  try {
+    const response = await userService.updateUser(req);
+    return res.status(200).send({
+      success: true,
+      message: "user updated successfully",
+      users: response,
+    });
+  } catch (error) {
+    console.log(error);
   }
-}
-
+};
 const userController = {
   register,
   login,
-  getUser
+  getUser,
+  updateUser,
 };
 
 export default userController;

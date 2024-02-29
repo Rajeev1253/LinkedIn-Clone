@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
     // required: true,
+  },
+  lastName: {
+    type: String,
+  },
+  additionalName: {
+    type: String,
   },
   avatar: {
     public_id: String,
@@ -12,46 +18,15 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     default: "ABCD",
-    required: true
+    required: true,
   },
-  followers: [
-    {
-      userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-      status: {
-        type: String,
-        enum: ["pending", "accepted", "rejected"],
-        default:"pending"
-      }
-    },
-  ],
-  following: [
-    {
-      userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-      status: {
-        type: String,
-        enum: ["pending", "accepted", "rejected"]
-      }
-    },
-  ],
-
   email: {
     type: String,
     required: true,
     unique: true,
   },
   address: {
-    street: {
-      type: String,
-      default: "ABC",
-      // required:true
-    },
-    suite: {
+    country: {
       type: String,
       default: "ABC",
       // required:true
@@ -60,23 +35,6 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: "ABC",
       // required:true
-    },
-    zipcode: {
-      type: String,
-      default: "ABC",
-      // required:true
-    },
-    geo: {
-      lat: {
-        type: String,
-        default: "ABC",
-        // required:true
-      },
-      lng: {
-        type: String,
-        default: "ABC",
-        // requried:true
-      },
     },
   },
   phone: {
@@ -90,20 +48,10 @@ const userSchema = new mongoose.Schema({
     // required:true,
   },
   company: {
-    CompanyName: {
+    industry: {
       type: String,
       default: "ABC",
       // required:true
-    },
-    catchPhrase: {
-      type: String,
-      default: "ABC",
-      // required:true,
-    },
-    bs: {
-      type: String,
-      default: "ABC",
-      // required:true,
     },
   },
   password: {

@@ -21,23 +21,25 @@ const UserProfile = () => {
           height: "100vh",
           display: "flex",
           flexDirection: "column",
-          paddingTop:"20px",    
+          paddingTop: "20px",
           alignItems: "center",
         }}
       >
-        <Box width="804px">
-          <Stack>
+        <Stack sx={{ display: "flex ", flexDirection: "row" }}>
+          <Stack width="804px">
             <Stack position="relative">
-              <img src={profile}></img>
+              <Stack height="201px">
+                <img src={profile}></img>
+              </Stack>
               <Avatar
-              sx={{
-                width: "120px",
-                height: "120px",
-                position: "absolute",
-                top: "140px",
-                left: "50px",
-              }}
-            />
+                sx={{
+                  width: "120px",
+                  height: "120px",
+                  position: "absolute",
+                  top: "140px",
+                  left: "50px",
+                }}
+              />
             </Stack>
             <Stack
               sx={{
@@ -49,11 +51,7 @@ const UserProfile = () => {
               }}
             >
               <Stack display="flex" alignItems="end" paddingRight="30px">
-                <Button startIcon={<EditProfile/>}> 
-                </Button>
-              
-              
-                
+                <Button startIcon={<EditProfile />}></Button>
               </Stack>
               <Stack display="flex" justifyContent="flex-end">
                 <img sr></img>
@@ -65,7 +63,20 @@ const UserProfile = () => {
               <Typography>Bathinda Punjab India</Typography>
             </Stack>
           </Stack>
-        </Box>
+          <Stack
+            width="300px"
+            height="160px"
+            bgcolor="white"
+            sx={{ ml: 2, borderRadius: "10px" }}
+          >
+            <Typography fontWeight="600" fontSize="18px" padding="15px">
+              Profile Languages
+            </Typography>
+            <Typography fontWeight="600" fontSize="18px" padding="15px">
+              Public Profile & URL
+            </Typography>
+          </Stack>
+        </Stack>
       </Box>
     </div>
   );

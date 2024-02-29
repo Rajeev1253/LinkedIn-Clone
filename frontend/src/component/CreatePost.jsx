@@ -5,7 +5,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import SentimentSatisfiedAltOutlinedIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
 import {
   Button,
@@ -26,7 +26,7 @@ import { createPost, fetchPost } from "../features/post/postAction";
 const CreatePost = () => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
-  const [source, setSource] = useState("")
+  const [source, setSource] = useState("");
   const [file, setfile] = useState();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.userToken);
@@ -43,24 +43,24 @@ const CreatePost = () => {
     formData.append("userId", userId);
     formData.append("title", title);
     [...file].map((f) => {
-      formData.append("images", f)
-    })
+      formData.append("images", f);
+    });
 
     const data = await dispatch(createPost(formData));
     console.log("post created ", data.payload.data);
-    setSource(data.payload.data.image)
+    setSource(data.payload.data.image);
     dispatch(fetchPost(token));
     setOpen(false);
   };
-  const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
+  const VisuallyHiddenInput = styled("input")({
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
     height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
+    overflow: "hidden",
+    position: "absolute",
     bottom: 0,
     left: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: "nowrap",
     width: 1,
   });
 
@@ -72,7 +72,8 @@ const CreatePost = () => {
           textTransform: "capitalize",
           border: "1px solid black",
           borderRadius: "15px",
-          width: "357px",
+          width: "450px",
+          height: "48px",
         }}
         onClick={() => setOpen(true)}
       >
@@ -81,7 +82,6 @@ const CreatePost = () => {
         </Typography>
       </Button>
       <form action="/profile" method="post" enctype="multipart/form-data">
-
         <Dialog
           PaperProps={{
             sx: {
@@ -153,11 +153,18 @@ const CreatePost = () => {
               variant="outlined "
               tabIndex={-1}
               startIcon={<ImageIcon />}
-              onClick={()=>document.getElementById('postimage').click()}
+              onClick={() => document.getElementById("postimage").click()}
             >
-            <input type="file" id="postimage" accept=".png,.jpg,.jpeg" onChange={(e)=>{setfile(e.target.files)}} multiple hidden ></input>
-             
-
+              <input
+                type="file"
+                id="postimage"
+                accept=".png,.jpg,.jpeg"
+                onChange={(e) => {
+                  setfile(e.target.files);
+                }}
+                multiple
+                hidden
+              ></input>
             </Button>
             <IconButton>
               <CalendarMonthIcon />
