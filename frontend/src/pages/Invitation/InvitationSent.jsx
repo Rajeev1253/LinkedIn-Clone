@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../component/Navbar'
 import { Box, Stack, Typography, Card,CardContent,Button} from '@mui/material'
 import "./invitation.css"
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import SendedRequest from '../../component/SendedRequest';
+import { SenderRequest } from '../../features/connection/connectionAction';
+
+
 
 const InvitationSent = () => {
+  const token = useSelector((state)=>state.auth.userToken)
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(SenderRequest(token))
+  },[dispatch])
+  const connection2 =   useSelector((state)=>state.connection.connection)
+  const isLoading = useSelector((state) => state.connection.loading);
+  const error = useSelector((state) => state.connection.error);
+  console.log(connection2);
+  if (isLoading) {
+    return "..isLoading1";
+  }
+  if (error) {
+    return error;
+  }
+  console.log("connection",connection2 );
   return (
     <div className='Invitation'>
        <Navbar/>
@@ -41,9 +62,21 @@ const InvitationSent = () => {
               </Link> 
              
 
-             <Button sx={{width:"72.33px", height:"39px"}} >Sent</Button>
+             <Button sx={{width:"72.33px", height:"39px"}}  >Sent</Button>
             
             </Stack>
+          </CardContent>
+        </Card>
+        <Card   sx={{
+            width: "850px",
+            bgcolor: "white",
+            borderRadius: "12px ",
+            marginTop: "20px",
+          }}>
+        <CardContent>
+             {connection2?.map((props) => (
+            <SendedRequest props={props} />
+          ))}
           </CardContent>
         </Card>
         </Stack>

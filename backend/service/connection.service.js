@@ -26,7 +26,7 @@ export const getRequest = async (req) => {
 
             $and: [{ 'connectedTo': _id }, { "status": "pending" }]
 
-        })
+        }).populate('connectionBy',["firstName", "website"])
         return findRequest
 
     }
@@ -62,16 +62,16 @@ export const deleteRequest = async(req)=>{
 export const getSenderRequest = async (req) => {
     try {
         const { _id } = req.user;
+        console.log('_id:', _id);
 
-        const findRequest = connectionModel.find({
-
-            $and: [{ 'connectedBy': _id }, { "status": "pending" }]
-
-        })
+        const findRequest = await connectionModel.find({
+            $and: [{ 'connectionBy': _id }, { "status": "pending" }]
+        }).populate('connectedTo',["firstName", "website"])
+        console.log('findRequest: ', findRequest);  
         return findRequest
-
     }
     catch (error) {
+        console.log(error)
         throw error
     }
 

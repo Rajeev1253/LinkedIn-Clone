@@ -178,6 +178,7 @@ const HomeComponent = () => {
             </CardContent>
           </Card>
         </Stack>
+        
       </Stack>
     </div>
   );

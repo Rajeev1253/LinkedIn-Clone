@@ -3,4 +3,5 @@ export const ACTION_TYPE= {
     GET_REQUEST:"connection/recieve",
     UPDATE_REQUEST:"connection/update",
     DELETE_REQUEST:"connection/delete",
+    SENDER_REQUEST:"connection/sendrequest"
 }

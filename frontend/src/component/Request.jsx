@@ -38,7 +38,7 @@ const Request = (props) => {
                     >
                         <Stack display="flex" flexDirection="row">
                             <Avatar sx={{ width: "72px", height: "72px" }}></Avatar>
-                            <Typography>{props?.props?.connectionBy}</Typography>
+                            <Typography>{props?.props?.connectionBy.firstName}</Typography>
                         </Stack>
                         <Stack
                             width="165px"

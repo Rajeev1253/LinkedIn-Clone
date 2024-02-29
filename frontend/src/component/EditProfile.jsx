@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import CreateOutlined from "@mui/icons-material/CreateOutlined";
 import { Typography, Stack, Input } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch, useSelector } from "react-redux"
 
 const EditProfile = () => {
   const [open, setOpen] = React.useState(false);
@@ -19,14 +20,20 @@ const EditProfile = () => {
   const [school, setSchool] = useState("");
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.userToken);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
+
     setOpen(false);
   };
   const handleSubmit = () => {
+    const data ={firstName,lastName,additionalName,industry,school,country,city};
+    dispatch(data,token)
+    
     setOpen(false);
   };
   return (

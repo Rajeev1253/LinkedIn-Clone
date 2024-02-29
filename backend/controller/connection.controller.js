@@ -19,7 +19,6 @@ export const getRequest= async(req,res)=>{
 }
 export const getSenderRequest= async(req,res)=>{
     const response = await connectionService.getSenderRequest(req)
-    console.log(response)
     return res.status(200).send({
         success:true,
         message:"Request get successfully",

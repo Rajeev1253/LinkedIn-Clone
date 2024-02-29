@@ -51,3 +51,33 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  "auth/updateUser",
+
+  async ({data,token}, { rejectWithValue }) => {
+    try {
+      console.log("action", data);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:token
+        },
+      };
+
+      const res = await axios.post(
+        `http://localhost:8080/users/profile`,
+        {data},
+        config
+      );
+      console.log("action res", res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

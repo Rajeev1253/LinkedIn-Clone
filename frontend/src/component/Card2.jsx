@@ -37,13 +37,16 @@ const Card2 = ({ post }) => {
   const [expanded, setExpanded] = useState(false);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+  
+  const comments = useSelector((state) => state.comment.comment[post._id]);
+  
+
   // const post = useSelector((state) => state.post.post);
   // const userId = useSelector((state) => state.auth.userInfo._id);
   // const data = {
   //   userId: userId,
   //   comment: comment,
   // };
-  const comments = useSelector((state) => state.comment.comment[post._id]);
   console.log("comments: ", comments);
 
   const handleExpandClick = () => {
@@ -89,7 +92,6 @@ const Card2 = ({ post }) => {
 
           <CardMedia
             component="img"
-            height="200px"
             image={`http://localhost:8080/${post?.image[0]}`}
           />
 

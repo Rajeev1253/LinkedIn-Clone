@@ -31,7 +31,7 @@ const UserCard = ({ item }) => {
 
         <Stack>
           <Typography fontSize="15px" sx={{ paddingTop: "16px" }}>
-            {item.username}
+            {item.email}
           </Typography>
         </Stack>
         <Stack display="flex" alignItems="end">

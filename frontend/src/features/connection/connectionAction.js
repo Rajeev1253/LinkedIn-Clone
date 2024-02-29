@@ -14,7 +14,7 @@ export const sendRequest = createAsyncThunk(ACTION_TYPE.POST_REQUEST,
           Authorization: token,
         },
       };
-      const res = await axios.post(`http://localhost:8080/connection/${userId}`, config);
+      const res = await axios.post(`http://localhost:8080/connection/${userId}`,{}, config);
       // const res = await post(userId,config);
       return res
     }
@@ -78,3 +78,15 @@ export const updateRequest = createAsyncThunk(ACTION_TYPE.UPDATE_REQUEST,
         console.log(error)
       }
     })
+    export const SenderRequest = createAsyncThunk(ACTION_TYPE.SENDER_REQUEST,
+      async(token)=>{
+        try{
+          const response = await axios.get(`http://localhost:8080/connection/sender`,{headers:{Authorization:token}});
+          return response
+  
+        }
+        catch(error){
+          console.log(error)
+        }
+      })
+  

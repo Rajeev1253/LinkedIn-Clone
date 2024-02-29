@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.black, 0.1),
+  backgroundColor:  "#edf3f8",
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.black, 0.25),
   },
@@ -43,6 +43,8 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+ 
+  
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -61,108 +63,83 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Navbar = () => {
   return (
     <div className="navbar">
-      <AppBar position="static" sx={{ bgcolor: "white" }}>
-        <Toolbar>
-          <Box
-            component="div"
-            sx={{
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              ml: 10,
-            }}
-          >
-            <Stack
-              component="div"
-              display="flex"
-              width="480px"
-              height="32px"
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Stack sx={{ pb: 4, pr: 1 }}>
+      <AppBar position="static" elevation={0} sx={{ bgcolor: "white", height:"52px" }}>
+        <Toolbar >
+
+
+          <Stack flexDirection="row" justifyContent="space-between" alignItems="center" width={"75rem"} height="52px" m={"auto"} pb={1}>
+
+            <Stack justifyContent="center" alignItems="center" flexDirection="row"  paddingBottom="5px">
+              <Stack sx={{ mb: 4, mr: 1, }}>
                 <img className="logo" src={logo} alt=""></img>
               </Stack>
-
               <Search size="small">
                 <SearchIconWrapper>
-                  <SearchIcon sx={{ color: "black" }} />
+                  <SearchIcon  sx={{ color: "black", width:"20px", height:"20px"}} />
                 </SearchIconWrapper>
                 <StyledInputBase
-                  placeholder="Search…"
+                  placeholder="Search"
+                
                   size="small"
-                  inputProps={{ "aria-label": "search" }}
+                  inputProps={{ "aria-label": "search"  }}
                   sx={{
                     width: "280px",
                     height: "32px",
-                    "&:hover": {
-                      width: "382px",
-                      height: "32px",
-                    },
+                    color:"black !important ",
+                    fontSize:"15px"
+                    
+
                   }}
                 />
               </Search>
             </Stack>
-            <Box
-              component="div"
-              display="flex"
-              fontSize="large"
-              sx={{ color: "grey", width: "40px", height: "24px" }}
-              gap="32px"
-              alignItems="center"
-            >
-              <Stack display="flex" alignItems="center" paddingTop="2px">
+
+            <Stack flexDirection="row"  alignItems={"center"} width={"46rem"}>
+
+              <Stack alignItems="center" textAlign="center" width={"80px"} height={"52px"}  paddingTop="3px">
                 <Link to="/home">
                   <img src={homeicon}></img>
                   <Typography fontSize="12px">Home</Typography>
                 </Link>
               </Stack>
-              <Stack
-                display="flex"
-                alignItems="center"
-                alignContent="center"
-                width="50px"
-              >
+              <Stack alignItems="center" textAlign="center" paddingTop="3px"  width={"80px"} height={"52px"} >
                 <Link to="/network">
                   <img src={networkicon}></img>
+                  <Typography fontSize="12px" >Network</Typography>
                 </Link>
-                <Typography fontSize="12px" lineHeight="16px">
-                  Network
-                </Typography>
-              </Stack>
-              <Stack
-                display="flex"
-                alignItems="center"
-                alignContent="center"
-                width="50px"
-              >
-                <Link>
+              </Stack>  
+              <Stack alignItems="center" textAlign="center" paddingTop="3px"  width={"80px"} height={"52px"} >
+                <Link to="/jobs">
                   <img src={jobicon}></img>
-                  <Typography fontSize="12px" lineHeight="16px">
-                    Jobs
-                  </Typography>
+                  <Typography fontSize="12px">Jobs</Typography>
                 </Link>
               </Stack>
-              <Stack display="flex" alignItems="center">
-                <Link to="/messaging">
+              <Stack alignItems="center" textAlign="center" paddingTop="3px"  width={"80px"} height={"52px"} >
+                <Link to="/message" >
                   <img src={messageicon}></img>
+                  <Typography fontSize="12px">Message</Typography>
                 </Link>
-                <Typography fontSize="12px">Messaging</Typography>
               </Stack>
-              <Stack display="flex" alignItems="center">
-                <Link>
+              <Stack alignItems="center" textAlign="center" paddingTop="3px"  width={"80px"} height={"52px"} >
+                <Link to="/notfication">
                   <img src={notification}></img>
+                  <Typography fontSize="12px" textSty>Notfications</Typography> 
                 </Link>
-                <Typography fontSize="12px">Notification</Typography>
               </Stack>
-              <Stack>
+           
+              <Stack alignItems="center" textAlign="center" paddingTop="3px"  width={"80px"} height={"52px"}>
                 <Link to="/profile">
                   <Avatar sx={{ width: "24px", height: "24px" }} />
                 </Link>
               </Stack>
-            </Box>
-          </Box>
+            </Stack>
+
+
+          </Stack>
+
+
+
+
         </Toolbar>
       </AppBar>
     </div>

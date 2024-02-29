@@ -45,7 +45,6 @@ const Invitation = () => {
             
             <hr />
           </CardContent>
-          <Request/>
         </Card>
       </Stack>
       <Stack></Stack>

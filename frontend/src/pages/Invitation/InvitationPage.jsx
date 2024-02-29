@@ -14,8 +14,18 @@ const InvitationPage = () => {
   useEffect(()=>{
     dispatch(gettRequest(token))
   },[dispatch])
-  const connection = useSelector((state)=>state.connection)
-  console.log("connection",connection) 
+  const connection1 = useSelector((state)=>state.connection.connection)
+  const loading = useSelector((state)=>state.connection.loading)
+  const error = useSelector((state) => state.connection.error);
+  const connection = useSelector((state)=>state.connection.connection)
+  console.log(connection1);
+  if (loading) {
+    return "..isLoading";
+  }
+  if (error) {
+    return error;
+  }
+  console.log("connection",connection );
   return (
   
  
@@ -56,9 +66,9 @@ const InvitationPage = () => {
             </Stack>
           </CardContent>
          <Stack>
-         {/* {connection?.connection?.map((props) => (
+         {connection?.map((props) => (
             <Request props={props} />
-          ))} */}
+          ))}
          </Stack>
          
         </Card>

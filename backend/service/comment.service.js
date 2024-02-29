@@ -30,7 +30,7 @@ export const fetchComment = async (payload) => {
   // console.log(postId);
   const comment = await commentModel
     .find(postId)
-    .sort({ createdAt: "descending" });
+    .sort({ createdAt: "descending" }).limit(5);
   console.log(`${postId} comments are:- `, comment);
   return comment;
 };
