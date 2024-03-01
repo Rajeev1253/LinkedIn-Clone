@@ -28,7 +28,7 @@ export const createComment = createAsyncThunk(
   }
 );
 export const fetchComment = createAsyncThunk(
-  ACTION_TYPE.FETCH_COMMENT,
+  "auth/update",
   async ({ postId }, { getState }) => {
     console.log("postId: ", postId);
     try {

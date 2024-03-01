@@ -32,29 +32,7 @@ const MyNetwork = () => {
   return (
     <div>
       <Navbar />
-      <Stack display="flex" flexDirection="row" justifyContent="center">
-      <Stack width="300px" height="52px" bgcolor="white" display="flex" justifyContent="space-between"  alignItems="center" sx={{mt:3}}>
-      <Card>
-      <Typography padding="15px" fontWeight="600">
-          Manage My network
-      <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <Button
-                sx={{ color: "gray" }}
-                startIcon={<KeyboardArrowDownRoundedIcon sx={{ color: "grey", }} />}
-              >
-                
-              </Button>
-            </ExpandMore>
-        
-      </Typography>
-      </Card>
-      </Stack>
-
+      <Stack flexDirection="row" justifyContent="center" alignItems="center">
       <Stack
         display="flex"
         justifyContent="center"

@@ -3,10 +3,12 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
+    default:"abc"
     // required: true,
   },
   lastName: {
     type: String,
+    default:"abc"
   },
   additionalName: {
     type: String,
@@ -37,6 +39,10 @@ const userSchema = new mongoose.Schema({
       // required:true
     },
   },
+  school:{
+    type:String,
+    default:"ABC"
+  },
   phone: {
     type: String,
     default: "ABC",
@@ -58,5 +64,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
 });
 export const userModel = mongoose.model("users", userSchema);

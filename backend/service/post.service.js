@@ -20,7 +20,7 @@ export const createPost = async (payload) => {
       console.log("userid or title not found");
     }
     const newPostData = {
-      // userid: payload.body.userid,
+      userId: payload.body.userId,
       title: payload.body.title,
       image: images,
     };
@@ -50,7 +50,7 @@ export const getPostPaginated = async (payload) => {
     .sort({ createdAt: "descending" })
     .lean()
     .limit(resultsPerPage)
-    .skip(page * resultsPerPage);
+    .skip(page * resultsPerPage).populate('userId',['firstName','lastName','Avatar'])
 
   return { posts };
 };

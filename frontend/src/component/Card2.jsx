@@ -11,6 +11,7 @@ import {
   Collapse,
   TextField,
 } from "@mui/material";
+import { ReactionBarSelector } from '@charkour/react-reactions';
 import React, { useState } from "react";
 import SmsRoundedIcon from "@mui/icons-material/SmsRounded";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
@@ -21,6 +22,12 @@ import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, fetchComment } from "../features/comment/commentAction";
+import likeicon from "../assets/Like.svg"
+import commenticon from "../assets/Comment.svg"
+import reposticon from "../assets/Repost.svg"
+import shareicon from "../assets/Share.svg"
+
+
 import CommentCard from "./CommentCard";
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,9 +43,11 @@ const ExpandMore = styled((props) => {
 const Card2 = ({ post }) => {
   const [expanded, setExpanded] = useState(false);
   const [comment, setComment] = useState("");
+  const [showEmojis,setShowEmojis]= useState(false);
   const dispatch = useDispatch();
   
   const comments = useSelector((state) => state.comment.comment[post._id]);
+
   
 
   // const post = useSelector((state) => state.post.post);
@@ -55,6 +64,10 @@ const Card2 = ({ post }) => {
   const handleChange = (e) => {
     setComment(e.target.value);
   };
+  const handleEmojis = ()=>{
+    setShowEmojis(true)
+    return <ReactionBarSelector/>
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -82,10 +95,11 @@ const Card2 = ({ post }) => {
         <Card>
           <CardContent>
             <Stack display="flex" direction="row">
-              <Avatar>R</Avatar>
-              <Typography sx={{ pl: 1 }}>Rajeev Goyal</Typography>
+              <Avatar>{post.userId.Avatar}</Avatar>
+              <Typography sx={{ pl: 1 }}>{post.userId.firstName } {post.userId.lastName}</Typography>
+              <Typography sx={{ pl: 1 }}> </Typography>
             </Stack>
-            <Typography gutterBottom variant="h5" component="div" color="grey">
+            <Typography gutterBottom fontSize="14px" paddingTop="12px" paddingLeft="5px" component="div" color="grey">
               {post.title}
             </Typography>
           </CardContent>
@@ -104,13 +118,14 @@ const Card2 = ({ post }) => {
             </Typography>
           </CardContent>
           <CardActions sx={{ color: "gray" }}>
+          <Stack direction="row" gap={4} color={"gray"}>
+
             <Button
-              sx={{ color: "gray" }}
-              startIcon={
-                <ThumbUpAltOutlinedIcon sx={{ color: "gray", ml: 4 }} />
-              }
+              sx={{ color: "gray" ,textTransform: "capitalize"}}
+              startIcon={<img src={likeicon}></img> }   
             >
-              Like
+             Like
+             {showEmojis}
             </Button>
             <ExpandMore
               expand={expanded}
@@ -119,8 +134,8 @@ const Card2 = ({ post }) => {
               aria-label="show more"
             >
               <Button
-                sx={{ color: "gray" }}
-                startIcon={<SmsRoundedIcon sx={{ color: "grey", ml: 4 }} />}
+                sx={{ color: "gray",width:"130px",height:"28px"  ,textTransform: "capitalize"}}
+                startIcon={<img src={commenticon}></img>}
                 onClick={handleComment}
               >
                 Comment
@@ -128,17 +143,18 @@ const Card2 = ({ post }) => {
             </ExpandMore>
 
             <Button
-              sx={{ color: "gray" }}
-              startIcon={<PostAddOutlinedIcon sx={{ color: "gray", ml: 3 }} />}
+              sx={{ color: "gray" ,textTransform: "capitalize"}}
+              startIcon={<img src={reposticon}></img>}
             >
               Repost
             </Button>
             <Button
-              sx={{ color: "gray" }}
-              startIcon={<SendRoundedIcon sx={{ color: "gray", ml: 4 }} />}
+              sx={{ color: "gray" ,textTransform: "capitalize" }}
+              startIcon={<img src={shareicon}></img>}
             >
               Send
             </Button>
+          </Stack>
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>

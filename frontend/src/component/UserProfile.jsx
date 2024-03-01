@@ -8,7 +8,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import profile from "../assets/profilebg.webp";
+import profile from "../assets/profile.webp";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import EditProfile from "./EditProfile";
 import { useSelector } from "react-redux";
@@ -61,7 +61,7 @@ const UserProfile = () => {
                 <img sr></img>
               </Stack>
               <Typography fontSize="24px" fontWeight="600" sx={{ pt: 4 }}>
-               {userInfo.firstName} {userInfo.lastName}
+               
               </Typography>
               <Typography>--</Typography>
               <Typography>Bathinda Punjab India</Typography>

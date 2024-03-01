@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "userModel", // add required attribute
+    ref: "users", // add required attribute
   },
   title: {
     type: String,

@@ -1,10 +1,11 @@
 import { Avatar, Box, Button, Card, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sendRequest } from "../features/connection/connectionAction";
 import { useSelector } from "react-redux";
 
 const UserCard = ({ item }) => {
+  const [clicked,setClicked]= useState(false);
   const userId = item._id;
   const token = useSelector((state) => state.auth.userToken);
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const UserCard = ({ item }) => {
   const handleConnect = async () => {
     // console.log(userId);
     dispatch(sendRequest({ userId, token }));
+    setClicked(true)
   };
   return (
     <Card
@@ -44,7 +46,7 @@ const UserCard = ({ item }) => {
             }}
             onClick={handleConnect}
           >
-            Connect
+            {!clicked?"Connect":"Pending"}
           </Button>
         </Stack>
       </Stack>

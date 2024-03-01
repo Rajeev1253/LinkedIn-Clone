@@ -74,11 +74,13 @@ const CreatePost = () => {
           borderRadius: "15px",
           width: "450px",
           height: "48px",
+         
+    
         }}
         onClick={() => setOpen(true)}
       >
-        <Typography fontSize="14px" color="black">
-          Start a post,try writing with AI
+        <Typography fontSize="14px" color="black" textAlign="left">
+          Start a post
         </Typography>
       </Button>
       <form action="/profile" method="post" enctype="multipart/form-data">

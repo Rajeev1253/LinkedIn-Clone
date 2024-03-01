@@ -40,9 +40,9 @@ export const getUser = async (req, res) => {
     console.log(error);
   }
 };
-export const updateUser = async (req, res) => {
+export const update = async (req, res) => {
   try {
-    const response = await userService.updateUser(req);
+    const response = await userService.update(req);
     return res.status(200).send({
       success: true,
       message: "user updated successfully",
@@ -56,7 +56,7 @@ const userController = {
   register,
   login,
   getUser,
-  updateUser,
+  update,
 };
 
 export default userController;

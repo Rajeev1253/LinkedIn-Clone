@@ -23,9 +23,9 @@ function App() {
         <Route path="/profile" element={<UserProfile />}></Route>
         <Route path="/invitation" element={<InvitationPage />}></Route>
         <Route path="/messaging" element={<MessagePage />}></Route>
-        
-        <Route path="/invitationSent" element={<InvitationSent/>}></Route>
-        
+
+        <Route path="/invitationSent" element={<InvitationSent />}></Route>
+
         <Route path="/network" element={<Network />}></Route>
       </Routes>
     </div>

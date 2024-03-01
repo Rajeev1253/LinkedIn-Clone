@@ -10,6 +10,7 @@ import CreateOutlined from "@mui/icons-material/CreateOutlined";
 import { Typography, Stack, Input } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useDispatch, useSelector } from "react-redux"
+import { updateUser } from "../features/auth/authAction";
 
 const EditProfile = () => {
   const [open, setOpen] = React.useState(false);
@@ -32,7 +33,7 @@ const EditProfile = () => {
   };
   const handleSubmit = () => {
     const data ={firstName,lastName,additionalName,industry,school,country,city};
-    dispatch(data,token)
+    dispatch(updateUser({data,token}))
     
     setOpen(false);
   };

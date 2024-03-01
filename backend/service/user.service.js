@@ -88,29 +88,39 @@ const getUser = async (req) => {
       message: `User not found`,
     });
   }
-  const connection = await connectionModel.find({connectionBy:userId});
+  let connection = await connectionModel.find({connectionBy:userId});
   // [{connectionTo}]
   // [connectionTo,connectonTo]
   // CONNECTION -> MAP ->
+  connection = connection.map((i)=>{
+    return i.connectedTo;
+  })
+  console.log('connection: ', connection);
 
-
-  const users = await userModel.find({ _id: { $ne: userId } })  
+  const users = await userModel.find({ $and:[
+    
+    
+   { _id: { $ne: userId }},{_id:{$nin:connection}} 
+  
+  ]})
   return users;
 };
 
-const updateUser = async (req, res) => {
+const update = async (req, res) => {
   const userId = req.user._id;
   const user = await userModel.findById(userId);
+  console.log("data2",req.body.data)
   if (user) {
-    user.firstName = req.body.firstName || user.firstName;
-    user.lastName = req.body.lastName || user.lastName;
-    user.additionalName = req.body.additionalName || user.additionalName;
-    user.school = req.body.school || user.school
-    user.address.country = req.body.country || user.address.country;
-    user.address.city = req.body.city || user.address.city;
-    user.company.industry = req.body.industry || user.company.industry;
+    user.firstName = req.body.data.firstName || user.firstName;
+    user.lastName = req.body.data.lastName || user.lastName;
+    user.additionalName = req.body.data.additionalName || user.additionalName;
+    user.school = req.body.data.school || user.school
+    user.address.country = req.body.data.country || user.address.country;
+    user.address.city = req.body.data.city || user.address.city;
+    user.company.industry = req.body.data.industry || user.company.industry;
   }
   const updateUser = await user.save();
+  console.log('updateUser: ', updateUser);
   return updateUser;
 };
 
@@ -118,5 +128,5 @@ export const userService = {
   login,
   register,
   getUser,
-  updateUser,
+  update,
 };

@@ -25,7 +25,7 @@ ACTION_TYPE.ADD_USER,
   }
 );
 export const loginUser = createAsyncThunk(
-  "auth/login",
+ ACTION_TYPE.SIGN_IN,
   async ({ email, password }, { rejectWithValue }) => {
     try {
       console.log("action", email, password);
@@ -53,8 +53,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk(
-  "auth/updateUser",
-
+ ACTION_TYPE.UPDATE_USER, 
   async ({data,token}, { rejectWithValue }) => {
     try {
       console.log("action", data);

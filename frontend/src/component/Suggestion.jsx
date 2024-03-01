@@ -49,7 +49,7 @@ const Suggestion = () => {
 
       <Box
         sx={{
-          width: "850px",
+          width: "830px",
           bgcolor: "white",
           borderRadius: "12px ",
           marginTop: "30px",
@@ -61,12 +61,11 @@ const Suggestion = () => {
 
 
 
-        <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 3, sm: 8, md: 12 }} sx={{ pl: "30px", pt: "50px" }} >
+        <Grid container  sx={{pt: "50px", gap:"15px"}} >
           {data.users?.map((item) => (
         
-            <Item> 
          
-            <UserCard item={item} /></Item>
+            <UserCard item={item} />
 
           ))}
 
