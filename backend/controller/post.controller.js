@@ -4,19 +4,20 @@ import { errorHandler } from "../lib/utils.js";
 export const createPost = async (req, res) => {
   try {
     const response = postService.createPost(req);
-    console.log("dfsjkklsdajflksjflksd",req.files)
+    console.log("dfsjkklsdajflksjflksd", req.files);
     res.status(201).send({
       success: true,
       message: "new post created successfully",
       post: response.post,
-      image: req.files[0].filename
+      image: req.files[0].filename,
     });
   } catch (error) {
-    console.log("create post",error);
-    errorHandler(res,error)
+    console.log("create post", error);
+    errorHandler(res, error);
   }
 };
 export const getAllPost = async (req, res) => {
+  console.log("controller", req.params);
   let response = await postService.getPostPaginated(req);
   if (response.posts && response.posts.length > 0) {
     res.status(200).send({
@@ -38,14 +39,14 @@ export const getPost = async (req, res) => {
       post: response.post,
     });
   } catch (error) {
-    errorHandler(res,error)
+    errorHandler(res, error);
   }
 };
 
 export const deletePost = async (req, res) => {
   try {
     const response = await postService.deletePost(req);
-    
+
     return res.status(200).send({
       success: true,
       message: "post deleted successfully",
@@ -59,7 +60,7 @@ export const deletePost = async (req, res) => {
 export const updatePost = async (req, res) => {
   try {
     const response = await postService.updatePost(req);
-console.log(response.data)
+    console.log(response.data);
     return res.send({
       success: true,
       message: "post updated successfully",

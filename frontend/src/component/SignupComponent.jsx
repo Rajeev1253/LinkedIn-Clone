@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
 import "./Style/signup.css";
 import IconButton from "@mui/material/IconButton";
-import { Button, TextField } from "@mui/material";
+import { Avatar, Button, Stack, TextField, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import { Link, useNavigate } from "react-router-dom";
 import google from "../assets/google-icon.png";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/auth/authAction";
 
@@ -85,7 +83,16 @@ const SignupComponent = () => {
       <div className="main">
         <div className="header">
           <div className="logo">
-            <img src={Logo} alt="LinkedIn"></img>
+            <img
+              src={Logo}
+              alt="LinkedIn"
+              style={{
+                width: "135px",
+                height: "33px",
+                position: "relative",
+                top: "0px",
+              }}
+            ></img>
           </div>
         </div>
       </div>
@@ -122,8 +129,12 @@ const SignupComponent = () => {
               >
                 <InputLabel htmlFor="filled-adornment-password"></InputLabel>
                 <TextField
+                  sx={{
+                    width: "348px",
+                    paddingLeft: "6px",
+                    height: "30px !important",
+                  }}
                   Input
-                  label="password"
                   id="filled-adornment-password"
                   size="small"
                   type={showPassword ? "text" : "password"}
@@ -202,9 +213,15 @@ const SignupComponent = () => {
           </div>
         </div>
       </div>
-      <div className="bottom-para">
-        <p>Looking to create a page for a business? Get help</p>
-      </div>
+      <Stack>
+        <Typography
+          textAlign="center"
+          bgcolor={"#f3f2f0"}
+          sx={{ pt: 2, pb: 5 }}
+        >
+          Looking to create a page for a business? Get help
+        </Typography>
+      </Stack>
     </div>
   );
 };

@@ -13,8 +13,7 @@
     justify-content: space-around;
 }
 .header{
-    width: 60vw;
-    padding-top: 24px;
+    width: 90vw;
 }
 .logo>img{
     height: 35px;
@@ -166,10 +165,11 @@ label{
 .password{
     padding-left:20px ;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .label2{
     padding-top: 24px;  
+    width: 348px;
 }
 .show{
     color:#0a66c2,
@@ -179,7 +179,4 @@ label{
     font-size: 16px;
     font-weight: 600;
     color: rgb(10, 102, 194);
-}
-.buttons{
-    
 }

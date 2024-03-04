@@ -69,17 +69,21 @@ const CreatePost = () => {
       {/* <img src={`http://localhost:8080/uploads/${source}`} /> */}
       <Button
         sx={{
-          textTransform: "capitalize",
+          textTransform: "none",
           border: "1px solid black",
-          borderRadius: "15px",
+          borderRadius: "25px",
           width: "450px",
           height: "48px",
-         
-    
         }}
         onClick={() => setOpen(true)}
       >
-        <Typography fontSize="14px" color="black" textAlign="left">
+        <Typography
+          fontSize="14px"
+          color="black"
+          textAlign={"left"}
+          width={"100%"}
+          sx={{ pl: 2 }}
+        >
           Start a post
         </Typography>
       </Button>

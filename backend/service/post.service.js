@@ -39,18 +39,21 @@ export const createPost = async (payload) => {
   }
 };
 
-export const getPostPaginated = async (payload) => {
-  let page = Number(payload.params) || 0;
-  if (!page || page.trim() === "") {
+export const getPostPaginated = async (req) => {
+  console.log("payload: ", req.query);
+  let page = Number(req.query.page);
+  console.log("page: ", page);
+  if (!page) {
     page = 0;
   }
-  let resultsPerPage = 10;
+  let resultsPerPage = 5;
   const posts = await postModel
     .find({})
     .sort({ createdAt: "descending" })
     .lean()
     .limit(resultsPerPage)
-    .skip(page * resultsPerPage).populate('userId',['firstName','lastName','Avatar'])
+    .skip(page * resultsPerPage)
+    .populate("userId", ["firstName", "lastName", "Avatar"]);
 
   return { posts };
 };

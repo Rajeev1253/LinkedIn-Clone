@@ -21,7 +21,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../features/auth/authAction";
 
 const LoginComponent = () => {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -83,7 +82,7 @@ const LoginComponent = () => {
                 <div className="password2">
                   <FormControl
                     sx={{
-                      m: 1,
+                      mt: 1,
                       width: "25ch",
                       "& .MuiFilledInput-underline:after": {
                         borderBottom: "none",
@@ -107,8 +106,6 @@ const LoginComponent = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       sx={{
                         width: "302px",
-                        marginTop: "-10px",
-                        marginLeft: "-8px",
                         color: "black",
                       }}
                       type={showPassword ? "text" : "password"}

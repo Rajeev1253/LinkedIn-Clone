@@ -3,18 +3,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserCard from "./UserCard";
 import { useSelector } from "react-redux";
-import Grid from '@mui/material/Grid';
+import Grid from "@mui/material/Grid";
 
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper'
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-
 
 const Suggestion = () => {
   const token = useSelector((state) => state.auth.userToken);
@@ -49,7 +48,7 @@ const Suggestion = () => {
 
       <Box
         sx={{
-          width: "830px",
+          width: "804px",
           bgcolor: "white",
           borderRadius: "12px ",
           marginTop: "30px",
@@ -59,16 +58,10 @@ const Suggestion = () => {
       >
         <Typography>People you may know </Typography>
 
-
-
-        <Grid container  sx={{pt: "50px", gap:"15px"}} >
+        <Grid container sx={{ pt: "50px", gap: "15px" }}>
           {data.users?.map((item) => (
-        
-         
             <UserCard item={item} />
-
           ))}
-
         </Grid>
       </Box>
     </div>

@@ -11,7 +11,7 @@ import {
   Collapse,
   TextField,
 } from "@mui/material";
-import { ReactionBarSelector } from '@charkour/react-reactions';
+import { ReactionBarSelector } from "@charkour/react-reactions";
 import React, { useState } from "react";
 import SmsRoundedIcon from "@mui/icons-material/SmsRounded";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
@@ -22,11 +22,10 @@ import "./Style/card.css";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, fetchComment } from "../features/comment/commentAction";
-import likeicon from "../assets/Like.svg"
-import commenticon from "../assets/Comment.svg"
-import reposticon from "../assets/Repost.svg"
-import shareicon from "../assets/Share.svg"
-
+import likeicon from "../assets/Like.svg";
+import commenticon from "../assets/Comment.svg";
+import reposticon from "../assets/Repost.svg";
+import shareicon from "../assets/Share.svg";
 
 import CommentCard from "./CommentCard";
 const ExpandMore = styled((props) => {
@@ -43,12 +42,12 @@ const ExpandMore = styled((props) => {
 const Card2 = ({ post }) => {
   const [expanded, setExpanded] = useState(false);
   const [comment, setComment] = useState("");
-  const [showEmojis,setShowEmojis]= useState(false);
-  const dispatch = useDispatch();
-  
-  const comments = useSelector((state) => state.comment.comment[post._id]);
+  const [showEmojis, setShowEmojis] = useState(false);
+  const [page, setPage] = useState(0);
 
-  
+  const dispatch = useDispatch();
+
+  const comments = useSelector((state) => state.comment.comment[post._id]);
 
   // const post = useSelector((state) => state.post.post);
   // const userId = useSelector((state) => state.auth.userInfo._id);
@@ -64,10 +63,10 @@ const Card2 = ({ post }) => {
   const handleChange = (e) => {
     setComment(e.target.value);
   };
-  const handleEmojis = ()=>{
-    setShowEmojis(true)
-    return <ReactionBarSelector/>
-  }
+  const handleEmojis = () => {
+    setShowEmojis(true);
+    return <ReactionBarSelector />;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -95,11 +94,20 @@ const Card2 = ({ post }) => {
         <Card>
           <CardContent>
             <Stack display="flex" direction="row">
-              <Avatar>{post.userId.Avatar}</Avatar>
-              <Typography sx={{ pl: 1 }}>{post.userId.firstName } {post.userId.lastName}</Typography>
+              <Avatar>{post ? post.userId.Avatar : "R"}</Avatar>
+              <Typography sx={{ pl: 1 }}>
+                {post.userId.firstName} {post.userId.lastName}
+              </Typography>
               <Typography sx={{ pl: 1 }}> </Typography>
             </Stack>
-            <Typography gutterBottom fontSize="14px" paddingTop="12px" paddingLeft="5px" component="div" color="grey">
+            <Typography
+              gutterBottom
+              fontSize="14px"
+              paddingTop="12px"
+              paddingLeft="5px"
+              component="div"
+              color="grey"
+            >
               {post.title}
             </Typography>
           </CardContent>
@@ -118,43 +126,47 @@ const Card2 = ({ post }) => {
             </Typography>
           </CardContent>
           <CardActions sx={{ color: "gray" }}>
-          <Stack direction="row" gap={4} color={"gray"}>
-
-            <Button
-              sx={{ color: "gray" ,textTransform: "capitalize"}}
-              startIcon={<img src={likeicon}></img> }   
-            >
-             Like
-             {showEmojis}
-            </Button>
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
+            <Stack direction="row" gap={4} color={"gray"}>
               <Button
-                sx={{ color: "gray",width:"130px",height:"28px"  ,textTransform: "capitalize"}}
-                startIcon={<img src={commenticon}></img>}
-                onClick={handleComment}
+                sx={{ color: "gray", textTransform: "capitalize" }}
+                startIcon={<img src={likeicon}></img>}
               >
-                Comment
+                Like
+                {showEmojis}
               </Button>
-            </ExpandMore>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <Button
+                  sx={{
+                    color: "gray",
+                    width: "130px",
+                    height: "28px",
+                    textTransform: "capitalize",
+                  }}
+                  startIcon={<img src={commenticon}></img>}
+                  onClick={handleComment}
+                >
+                  Comment
+                </Button>
+              </ExpandMore>
 
-            <Button
-              sx={{ color: "gray" ,textTransform: "capitalize"}}
-              startIcon={<img src={reposticon}></img>}
-            >
-              Repost
-            </Button>
-            <Button
-              sx={{ color: "gray" ,textTransform: "capitalize" }}
-              startIcon={<img src={shareicon}></img>}
-            >
-              Send
-            </Button>
-          </Stack>
+              <Button
+                sx={{ color: "gray", textTransform: "capitalize" }}
+                startIcon={<img src={reposticon}></img>}
+              >
+                Repost
+              </Button>
+              <Button
+                sx={{ color: "gray", textTransform: "capitalize" }}
+                startIcon={<img src={shareicon}></img>}
+              >
+                Send
+              </Button>
+            </Stack>
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
