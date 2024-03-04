@@ -48,6 +48,7 @@ const Card2 = ({ post }) => {
   const dispatch = useDispatch();
 
   const comments = useSelector((state) => state.comment.comment[post._id]);
+  console.log("comments: ", comments);
 
   // const post = useSelector((state) => state.post.post);
   // const userId = useSelector((state) => state.auth.userInfo._id);

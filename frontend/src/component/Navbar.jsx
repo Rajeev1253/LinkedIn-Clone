@@ -168,7 +168,7 @@ const Navbar = () => {
                 height={"52px"}
               >
                 <Link
-                  to="/message"
+                  to="/messaging"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
                   <img src={messageicon}></img>

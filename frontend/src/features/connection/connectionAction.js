@@ -3,7 +3,8 @@ import { ACTION_TYPE } from "./connectionActionType";
 import { post, recieve } from "../../services/connection.service";
 import axios from "axios";
 
-export const sendRequest = createAsyncThunk(ACTION_TYPE.POST_REQUEST,
+export const sendRequest = createAsyncThunk(
+  ACTION_TYPE.POST_REQUEST,
   async ({ userId, token }, { getState }) => {
     try {
       let state = getState();
@@ -14,16 +15,21 @@ export const sendRequest = createAsyncThunk(ACTION_TYPE.POST_REQUEST,
           Authorization: token,
         },
       };
-      const res = await axios.post(`http://localhost:8080/connection/${userId}`,{}, config);
+      const res = await axios.post(
+        `http://localhost:8080/connection/${userId}`,
+        {},
+        config
+      );
       // const res = await post(userId,config);
-      return res
+      return res;
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
-  })
+  }
+);
 
-export const gettRequest = createAsyncThunk(ACTION_TYPE.GET_REQUEST,
+export const gettRequest = createAsyncThunk(
+  ACTION_TYPE.GET_REQUEST,
   async (token) => {
     try {
       //   let state = getState();
@@ -36,16 +42,19 @@ export const gettRequest = createAsyncThunk(ACTION_TYPE.GET_REQUEST,
       //       }
       //   }
 
-      const response = await axios.get(`http://localhost:8080/connection`, { headers: { Authorization: token } });;
-      return response
+      const response = await axios.get(`http://localhost:8080/connection`, {
+        headers: { Authorization: token },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
-  })
-export const updateRequest = createAsyncThunk(ACTION_TYPE.UPDATE_REQUEST,
+  }
+);
+export const updateRequest = createAsyncThunk(
+  ACTION_TYPE.UPDATE_REQUEST,
   async ({ senderId, token }) => {
-    console.log('tokene2321: ', token);
+    console.log("tokene2321: ", token);
     // console.log('token: ', token);
     try {
       //   let state = getState();
@@ -57,36 +66,44 @@ export const updateRequest = createAsyncThunk(ACTION_TYPE.UPDATE_REQUEST,
       //           Authorization: state.auth.userToken,
       //       }
       //   }
-
-      const response = await axios.patch(`http://localhost:8080/connection/${senderId}`,{}, { headers: { "Authorization": token } });
-      return response
+      console.log("senderID", senderId, token);
+      const response = await axios.patch(
+        `http://localhost:8080/connection/${senderId}`,
+        null,
+        { headers: { Authorization: token } }
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
+  }
+);
+
+export const deleteRequest = createAsyncThunk(
+  ACTION_TYPE.DELETE_REQUEST,
+  async ({ connectionId, token }) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/connection/${connectionId}`,
+        { headers: { Authorization: token } }
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
     }
-
-  })
-
-  export const deleteRequest = createAsyncThunk(ACTION_TYPE.DELETE_REQUEST,
-    async({connectionId,token})=>{
-      try{
-        const response = await axios.delete(`http://localhost:8080/connection/${connectionId}`,{headers:{Authorization:token}});
-        return response
-
-      }
-      catch(error){
-        console.log(error)
-      }
-    })
-    export const SenderRequest = createAsyncThunk(ACTION_TYPE.SENDER_REQUEST,
-      async(token)=>{
-        try{
-          const response = await axios.get(`http://localhost:8080/connection/sender`,{headers:{Authorization:token}});
-          return response
-  
-        }
-        catch(error){
-          console.log(error)
-        }
-      })
-  
+  }
+);
+export const SenderRequest = createAsyncThunk(
+  ACTION_TYPE.SENDER_REQUEST,
+  async (token) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/connection/sender`,
+        { headers: { Authorization: token } }
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);

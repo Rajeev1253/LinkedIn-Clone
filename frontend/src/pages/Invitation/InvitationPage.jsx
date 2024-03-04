@@ -1,23 +1,31 @@
-import React, { useEffect } from 'react'
-import Navbar from '../../component/Navbar'
-import { Box, Stack, Typography, Card,CardContent,Button} from '@mui/material'
-import "./invitation.css"
-import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom'
-import Request from '../../component/Request';
-import { useDispatch, useSelector } from 'react-redux';
-import { gettRequest } from '../../features/connection/connectionAction';
-import UserCard from '../../component/UserCard';
+import React, { useEffect } from "react";
+import Navbar from "../../component/Navbar";
+import {
+  Box,
+  Stack,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
+import "./invitation.css";
+import SettingsIcon from "@mui/icons-material/Settings";
+import { Link } from "react-router-dom";
+import Request from "../../component/Request";
+import { useDispatch, useSelector } from "react-redux";
+import { gettRequest } from "../../features/connection/connectionAction";
+import UserCard from "../../component/UserCard";
+import Advertisement from "../../component/Advertisement";
 const InvitationPage = () => {
-  const token = useSelector((state)=>state.auth.userToken)
-  const dispatch= useDispatch();
-  useEffect(()=>{
-    dispatch(gettRequest(token))
-  },[dispatch])
-  const connection1 = useSelector((state)=>state.connection.connection)
-  const loading = useSelector((state)=>state.connection.loading)
+  const token = useSelector((state) => state.auth.userToken);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(gettRequest(token));
+  }, [dispatch]);
+  const connection1 = useSelector((state) => state.connection.connection);
+  const loading = useSelector((state) => state.connection.loading);
   const error = useSelector((state) => state.connection.error);
-  const connection = useSelector((state)=>state.connection.connection)
+  const connection = useSelector((state) => state.connection.connection);
   console.log(connection1);
   if (loading) {
     return "..isLoading";
@@ -25,58 +33,65 @@ const InvitationPage = () => {
   if (error) {
     return error;
   }
-  console.log("connection",connection );
+  console.log("connection", connection);
   return (
-  
- 
-    <div className='Invitation'>
-    <Navbar/>
+    <div className="Invitation">
+      <Navbar />
       <Stack
-        display="flex"
         alignItems="center"
+        justifyContent={"center"}
         bgcolor=" #f4f2ee"
-        height="100vh"  
-        marginTop="23px"
+        height="100vh"
+        sx={{ mt: 1 }}
+        direction={"row"}
       >
-        <Card
-          sx={{
-            width: "850px",
-            bgcolor: "white",
-            borderRadius: "12px ",
-            marginTop: "20px",
-          }}
-        >
-          <CardContent>
-            <Stack display="flex" flexDirection="row" justifyContent="space-between" alignItems="center">
-              <Typography paddingBottom="15px" alignItems="center">
-                Manage invitations
-              </Typography>
+        <Stack>
+          <Card
+            sx={{
+              width: "804px",
+              bgcolor: "white",
+              borderRadius: "12px ",
+              marginTop: "20px",
+            }}
+          >
+            <CardContent>
+              <Stack
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Typography paddingBottom="15px" alignItems="center">
+                  Manage invitations
+                </Typography>
                 <Button sx={{ width: "75px", height: "32px", color: "grey" }}>
-                 <SettingsIcon/>
-                  <hr/>
+                  <SettingsIcon />
+                  <hr />
                 </Button>
-         
+              </Stack>
+              <Stack display="flex" flexDirection="row">
+                <Button sx={{ width: "72.33px", height: "39px" }}>
+                  Recieved
+                </Button>
+                <Link to="/invitationSent">
+                  <Button sx={{ width: "72.33px", height: "39px" }}>
+                    Sent
+                  </Button>
+                </Link>
+              </Stack>
+            </CardContent>
+            <Stack>
+              {connection?.map((props) => (
+                <Request props={props} />
+              ))}
             </Stack>
-            <Stack display="flex" flexDirection="row">
-              <Button sx={{width:"72.33px", height:"39px"}}>Recieved</Button>
-             <Link to="/invitationSent">
-
-             <Button sx={{width:"72.33px", height:"39px"}} >Sent</Button>
-             </Link> 
-            </Stack>
-          </CardContent>
-         <Stack>
-         {connection?.map((props) => (
-            <Request props={props} />
-          ))}
-         </Stack>
-         
-        </Card>
+          </Card>
         </Stack>
+        <Stack sx={{ ml: 2 }}>
+          <Advertisement />
+        </Stack>
+      </Stack>
     </div>
-
-
-
-  )
-        }
-  export default InvitationPage;
+  );
+};
+export default InvitationPage;

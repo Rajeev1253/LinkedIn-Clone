@@ -23,7 +23,7 @@ import Footer from "./Footer";
 const MyNetwork = () => {
   const [value, setValue] = React.useState("1");
 
-  const handleChange = (SyntheticEvent, newValue: string) => {
+  const handleChange = (SyntheticEvent, newValue) => {
     setValue(newValue);
   };
   const [expanded, setExpanded] = useState(false);

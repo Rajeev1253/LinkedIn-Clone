@@ -13,8 +13,8 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import EditProfile from "./EditProfile";
 import { useSelector } from "react-redux";
 const UserProfile = () => {
-  const userInfo = useSelector((state)=>state.auth.userInfo)
-  console.log('userInfo: ', userInfo);
+  const userInfo = useSelector((state) => state.auth.userInfo);
+  console.log("userInfo: ", userInfo);
 
   return (
     <div>
@@ -60,9 +60,11 @@ const UserProfile = () => {
               <Stack display="flex" justifyContent="flex-end">
                 <img sr></img>
               </Stack>
-              <Typography fontSize="24px" fontWeight="600" sx={{ pt: 4 }}>
-               
-              </Typography>
+              <Typography
+                fontSize="24px"
+                fontWeight="600"
+                sx={{ pt: 4 }}
+              ></Typography>
               <Typography>--</Typography>
               <Typography>Bathinda Punjab India</Typography>
             </Stack>

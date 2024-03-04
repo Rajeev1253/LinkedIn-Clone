@@ -27,10 +27,12 @@ export const deleteComment = async (payload) => {
 export const fetchComment = async (payload) => {
   // console.log(payload.params)
   const postId = payload.params;
+  console.log(" postId: ", postId);
   // console.log(postId);
   const comment = await commentModel
     .find(postId)
-    .sort({ createdAt: "descending" }).limit(5);
+    .sort({ createdAt: "descending" })
+    .limit(5);
   console.log(`${postId} comments are:- `, comment);
   return comment;
 };
@@ -38,6 +40,7 @@ export const updateComment = async (payload) => {
   let data = await commentModel.findByIdAndUpdate(payload.params, {
     $set: payload.body,
   });
+  3;
   return { data };
 };
 export const getCommentPaginated = async (page) => {
