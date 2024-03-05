@@ -70,14 +70,7 @@ const HomeComponent = () => {
   const post = useSelector((state) => state.post.post);
   const isLoading = useSelector((state) => state.post.isLoading);
   const error = useSelector((state) => state.post.error);
-  console.log(post);
-  if (isLoading) {
-    return "..isLoading1";
-  }
-  if (error) {
-    return error;
-  }
-  console.log("post", post);
+
   return (
     <div className="homeComponent">
       <Navbar />
