@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../assets/Logo.png";
 import "./Style/signup.css";
 import IconButton from "@mui/material/IconButton";
-import { Avatar, Button, Stack, TextField, Typography } from "@mui/material";
+import {Button, Stack, TextField, Typography } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";

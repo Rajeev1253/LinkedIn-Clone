@@ -33,10 +33,10 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
-      console.log("slice", action.payload.data.user);
       state.loading = false;
       state.success = true;
       state.userInfo = action.payload.data.user;
+      console.log(state.userInfo)
       state.userToken = action.payload.data.token;
     });
     builder.addCase(loginUser.rejected, (state, action) => {

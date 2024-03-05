@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ACTION_TYPE } from "./commentActionType";
-import { create, fetch } from "../../services/comment.service";
+import { create } from "../../services/comment.service";
 import axios from "axios";
 
 export const createComment = createAsyncThunk(

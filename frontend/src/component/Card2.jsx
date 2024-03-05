@@ -50,12 +50,14 @@ const Card2 = ({ post }) => {
   const comments = useSelector((state) => state.comment.comment[post._id]);
   console.log("comments: ", comments);
 
-  // const post = useSelector((state) => state.post.post);
-  // const userId = useSelector((state) => state.auth.userInfo._id);
-  // const data = {
-  //   userId: userId,
-  //   comment: comment,
-  // };
+  // const postId = useSelector((state) => state.post.post.data.posts);
+  // console.log(' postId: ',  postId);
+  const userId = useSelector((state) => state.auth);
+  console.log('userId: ', userId);
+  const data = {
+    userId: userId,
+    comment: comment,
+  };
   console.log("comments: ", comments);
 
   const handleExpandClick = () => {
@@ -71,8 +73,8 @@ const Card2 = ({ post }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      // console.log("hello", post.data.posts)
-      // console.log("post", post._id);
+      console.log("hello", post.data.posts)
+      console.log("post", post._id);
 
       dispatch(createComment({ postId: post._id, comment: comment }));
       dispatch(fetchComment({ postId: post._id }));
@@ -200,7 +202,7 @@ const Card2 = ({ post }) => {
               </Stack>
             </CardContent>
             <Stack>
-              {comments?.map((i) => (
+              {comments && comments?.map((i) => (
                 <CommentCard body={i.body} />
               ))}
             </Stack>

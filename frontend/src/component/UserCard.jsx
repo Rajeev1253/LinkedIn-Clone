@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Button,
   Card,
   CardContent,
@@ -36,7 +35,7 @@ const UserCard = ({ item }) => {
     >
       <Stack textAlign="center" sx={{ mb: 1 }}>
         <Stack width="225px" position="relative" bottom="17px">
-          <img src={profile} style={{ height: "80px" }}></img>
+          <img src={profile} alt="background" style={{ height: "80px" }}></img>
           <Stack textAlign={"center"}>
             <Avatar
               sx={{

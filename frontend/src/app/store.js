@@ -5,7 +5,8 @@ import commentReducer from "../features/comment/commentSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import connectionReducer from "../features/connection/connectionSlice.js";
-import thunk from "redux-thunk"
+import chatSliceReducer  from "../features/chat/chatSlice.js"
+
 const persistConfig = {
   key: "root",
   storage,
@@ -15,10 +16,12 @@ const rootreducer = combineReducers({
   post: postReducer,
   comment: commentReducer,
   connection:connectionReducer,
+  chat:chatSliceReducer
 
 });
 const persistedReducer = persistReducer(persistConfig, rootreducer);
 export const store = configureStore({
   reducer: persistedReducer,
+
 });
 export const persistor = persistStore(store);

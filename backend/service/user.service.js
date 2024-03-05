@@ -73,7 +73,7 @@ const login = async (payload) => {
     const token = JWT.sign({ _id: user._id }, "Zenmonk", {
       expiresIn: "7d",
     });
-    console.log(token);
+    
     return { user, token };
   } catch (error) {
     throw error;
@@ -102,7 +102,7 @@ const getUser = async (req) => {
     
    { _id: { $ne: userId }},{_id:{$nin:connection}} 
   
-  ]})
+  ]}).limit(8)
   return users;
 };
 

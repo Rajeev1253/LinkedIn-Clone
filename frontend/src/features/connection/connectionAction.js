@@ -1,14 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ACTION_TYPE } from "./connectionActionType";
-import { post, recieve } from "../../services/connection.service";
 import axios from "axios";
 
 export const sendRequest = createAsyncThunk(
   ACTION_TYPE.POST_REQUEST,
   async ({ userId, token }, { getState }) => {
     try {
-      let state = getState();
-      console.log(userId, "*********************************", token);
       const config = {
         headers: {
           "Content-Type": "application/json",

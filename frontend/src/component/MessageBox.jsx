@@ -1,10 +1,9 @@
 import React from "react";
 import {
+  Avatar,
   Button,
   Divider,
-  Input,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -14,10 +13,14 @@ import gif from "../assets/gif.svg";
 import smile from "../assets/smile.svg";
 import paper from "../assets/paper.svg";
 import gallery from "../assets/gallery.svg";
+import Chat from "./Chat";
+import Advertisement from "./Advertisement";
+import Footer from "./Footer";
 
-const MessageBox = () => {
+const   MessageBox = () => {
   return (
-    <Stack>
+    <Stack  direction={"row"}>
+     <Stack >
       <Stack
         width="469px"
         direction="row"
@@ -27,7 +30,6 @@ const MessageBox = () => {
         sx={{
           bgcolor: "white",
           borderWidth: "thin",
-          border: "1px solid silver",
           borderRadius: "4px",
           mr: "5px",
         }}
@@ -40,7 +42,16 @@ const MessageBox = () => {
           <StarBorderOutlinedIcon />
         </Stack>
       </Stack>
-      <Stack height={"45vh"} width={"469px"} bgcolor={"white"}></Stack>
+      <Stack height={"62.5vh"} width={"469px"} bgcolor={"white"} overflow="auto">
+        <Avatar sx={{width:"72px",height:"72px",ml:1,mt:2}}></Avatar>
+        <Typography sx={{pl:3,pt:1}}>Username</Typography>
+        <Typography fontSize={"14px"} sx={{pl:3,pt:1} }>Skills</Typography>
+        <Divider/>
+        <Chat/>
+   
+
+
+      </Stack>
       <Stack
         width={"469px"}
         height={"121px"}
@@ -50,7 +61,6 @@ const MessageBox = () => {
         <Textarea
           placeholder="Write a message"
           minRows={3}
-          overflowY="scroll"
           sx={{
             width: "400px",
             height: "100px",
@@ -62,7 +72,7 @@ const MessageBox = () => {
         ></Textarea>
       </Stack>
       <Divider />
-      <Stack width={"469px"} height={"16vh"} bgcolor={"white"} color={"gray"}>
+      <Stack width={"469px"} height={"12vh"} bgcolor={"white"} color={"gray"}>
         <Stack
           direction={"row"}
           justifyContent={"space-between"}
@@ -70,15 +80,15 @@ const MessageBox = () => {
         >
           <Stack direction={"row"} gap={"10px"} sx={{ m: 2, color: "gray" }}>
             <img
-              src={gallery}
+              src={gallery} alt="gallery"
               style={{ width: "30px", height: "24px", color: "gray" }}
             ></img>
 
-            <img src={paper} style={{ width: "30px", height: "24px" }}></img>
+            <img src={paper} alt="paper" style={{ width: "30px", height: "24px" }}></img>
 
-            <img src={gif} style={{ width: "30px", height: "24px" }}></img>
+            <img src={gif} alt="gif" style={{ width: "30px", height: "24px" }}></img>
 
-            <img src={smile} style={{ width: "30px", height: "24px" }}></img>
+            <img src={smile} alt="smile" style={{ width: "30px", height: "24px" }}></img>
           </Stack>
           <Stack direction={"row"} alignItems={"center"}>
             <Button sx={{ color: "gray" }}>Send</Button>
@@ -86,7 +96,20 @@ const MessageBox = () => {
           </Stack>
         </Stack>
       </Stack>
+      <Stack>
+      
+      </Stack>
     </Stack>
+    <Stack sx ={{ml:1,}}>
+      <Advertisement/>
+      <Stack sx={{mt:3}}>
+
+      <Footer/>
+      </Stack>
+    </Stack>
+
+    </Stack>
+   
   );
 };
 

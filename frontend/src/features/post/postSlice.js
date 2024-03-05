@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current  } from "@reduxjs/toolkit";
 import { fetchPost, createPost } from "./postAction";
 
 const initalList = {
-  post: [],
+  posts: [],
   isLoading: false,
   error: null,
 };
@@ -16,8 +16,12 @@ const postSlice = createSlice({
     });
     builders.addCase(fetchPost.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log("payload", action.payload);
-      state.post = action.payload;
+      console.log("payload", action.payload.data.posts);
+      // console.log(current(state.post));
+      const post = state.posts;
+      post.concat(action.payload.data.posts);
+      console.log("state",post)
+      state.posts = action.payload.data.posts;
     });
     builders.addCase(fetchPost.rejected, (state, action) => {
       state.isLoading = false;
@@ -29,7 +33,7 @@ const postSlice = createSlice({
     builders.addCase(createPost.fulfilled, (state, action) => {
       console.log(action.payload);
       state.isLoading = false;
-      state.post = action.payload;
+      state.posts = action.payload;
     });
     builders.addCase(createPost.rejected, (state, action) => {
       state.isLoading = false;

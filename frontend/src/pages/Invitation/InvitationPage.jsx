@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../../component/Navbar";
 import {
-  Box,
   Stack,
   Typography,
   Card,
@@ -14,13 +13,13 @@ import { Link } from "react-router-dom";
 import Request from "../../component/Request";
 import { useDispatch, useSelector } from "react-redux";
 import { gettRequest } from "../../features/connection/connectionAction";
-import UserCard from "../../component/UserCard";
 import Advertisement from "../../component/Advertisement";
 const InvitationPage = () => {
   const token = useSelector((state) => state.auth.userToken);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(gettRequest(token));
+     // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [dispatch]);
   const connection1 = useSelector((state) => state.connection.connection);
   const loading = useSelector((state) => state.connection.loading);
@@ -35,14 +34,13 @@ const InvitationPage = () => {
   }
   console.log("connection", connection);
   return (
-    <div className="Invitation">
+    <div className="Invitation" style={{backgroundColor:"#f4f2ee"}}>
       <Navbar />
       <Stack
-        alignItems="center"
-        justifyContent={"center"}
         bgcolor=" #f4f2ee"
         height="100vh"
-        sx={{ mt: 1 }}
+        justifyContent={"center"}
+        sx={{ mt:2,pt:5 }}
         direction={"row"}
       >
         <Stack>
@@ -87,7 +85,7 @@ const InvitationPage = () => {
             </Stack>
           </Card>
         </Stack>
-        <Stack sx={{ ml: 2 }}>
+        <Stack sx={{ ml: 2,mt:2 }}>
           <Advertisement />
         </Stack>
       </Stack>

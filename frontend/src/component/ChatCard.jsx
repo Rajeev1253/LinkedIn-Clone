@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ChatCard = () => {
+const ChatCard = (props) => {
   return (
     <Box
       sx={{
@@ -29,11 +29,11 @@ const ChatCard = () => {
             justifyContent={"space-between"}
             width="200px"
           >
-            <Typography>Username</Typography>
+            <Typography color={"black"}>{props.name}</Typography>
             <Typography>time</Typography>
           </Stack>
           <Typography>Profession</Typography>
-          <Typography>Company Name</Typography>
+          <Typography>{props.industry}</Typography>
           <Divider />
         </Stack>
       </Stack>

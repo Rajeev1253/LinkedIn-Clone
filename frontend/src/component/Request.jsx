@@ -13,11 +13,26 @@ import {
   deleteRequest,
   updateRequest,
 } from "../features/connection/connectionAction";
+import { createChat } from "../features/chat/chatAction";
+import { useNavigate } from "react-router-dom";
 
 const Request = (props) => {
   const token = useSelector((state) => state.auth.userToken);
+  const navigate = useNavigate();
   //   console.log("token: ", token);
   const dispatch = useDispatch();
+  const userId = props.props._id
+
+  const data = {
+    userId,
+    token
+
+  }
+  const handleMessage = async()=>{
+    
+    dispatch(createChat(data))
+
+  }
 
   const handleIgnore = async () => {
     console.log("deleteToken: ", token);
@@ -54,6 +69,7 @@ const Request = (props) => {
             <Stack display="flex" flexDirection="row">
               <Avatar sx={{ width: "72px", height: "72px" }}></Avatar>
               <Typography>{props?.props?.connectionBy.firstName}</Typography>
+              <Button sx={{mt:4,pr:2,textTransform:"none"}} onClick={handleMessage}>Message</Button>
             </Stack>
             <Stack
               width="165px"

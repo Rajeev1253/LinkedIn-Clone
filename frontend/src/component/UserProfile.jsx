@@ -4,12 +4,10 @@ import {
   Avatar,
   Box,
   Button,
-  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
 import profile from "../assets/profile.webp";
-import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import EditProfile from "./EditProfile";
 import { useSelector } from "react-redux";
 const UserProfile = () => {
@@ -33,7 +31,7 @@ const UserProfile = () => {
           <Stack width="804px">
             <Stack position="relative">
               <Stack height="201px">
-                <img src={profile}></img>
+                <img src={profile} alt="background"></img>
               </Stack>
               <Avatar
                 sx={{
@@ -58,7 +56,6 @@ const UserProfile = () => {
                 <Button startIcon={<EditProfile />}></Button>
               </Stack>
               <Stack display="flex" justifyContent="flex-end">
-                <img sr></img>
               </Stack>
               <Typography
                 fontSize="24px"

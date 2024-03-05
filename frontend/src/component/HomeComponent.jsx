@@ -10,7 +10,6 @@ import profile from "../assets/bgdefault.png";
 import camera from "../assets/camera.jpg";
 import "./Style/Home.css";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import advertise from "../assets/advertisement.png";
 
 import {
   Avatar,
@@ -67,7 +66,8 @@ const HomeComponent = () => {
     window.addEventListener("scroll", handleInfiniteScroll);
   }, []);
 
-  const post = useSelector((state) => state.post.post);
+  const posts = useSelector((state) => state.post.posts);
+  console.log("posts",posts)
   const isLoading = useSelector((state) => state.post.isLoading);
   const error = useSelector((state) => state.post.error);
 
@@ -285,8 +285,9 @@ const HomeComponent = () => {
           <Stack>
             <div className="data-box">
               <div className="data">
-                {post?.data?.posts?.map((post) => (
+                {posts.map((post) => (<>
                   <Card2 key={post._id} post={post} />
+                </>
                 ))}
               </div>
             </div>

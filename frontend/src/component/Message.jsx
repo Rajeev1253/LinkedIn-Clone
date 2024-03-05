@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "../component/Style/message.css";
 import {
@@ -7,7 +7,6 @@ import {
   CardContent,
   Stack,
   Tab,
-  Tabs,
   Typography,
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
@@ -18,6 +17,8 @@ import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import ChatCard from "./ChatCard";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchChat } from "../features/chat/chatAction";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -57,23 +58,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
 const Message = () => {
   const [value, setValue] = useState("1");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const dispatch = useDispatch();
+
+  const token = useSelector((state)=>state.auth.userToken)
+  
+  useEffect(()=>{
+    dispatch(fetchChat(token))
+  },[])
+
+  const chats = useSelector((state)=>state.chat.chats) 
+  console.log("cahts",chats)
   return (
-    <Stack sx={{ border: "1px thin grey" }}>
+    <Stack sx={{ border: "1px thin grey" , bgcolor: "#f4f2ee",
+    height: "100vh",}}>
       <Navbar />
       <Stack
         justifyContent="center"
         flexDirection="row"
         sx={{
-          mt: 8,
-          bgcolor: "#f4f2ee",
-          height: "90vh",
-          border: "1px solid grey",
+          mt: 6,
+          pt:4,
+         
         }}
       >
         <Stack>
@@ -86,7 +96,6 @@ const Message = () => {
             sx={{
               bgcolor: "white",
               borderRadius: "10",
-              border: "1px solid grey",
             }}
           >
             <Typography fontWeight="600" sx={{ mt: 1, pl: 1 }}>
@@ -101,7 +110,7 @@ const Message = () => {
               sx={{}}
             >
               <MoreHorizIcon />
-              <img className="newmsg" src={newmsg}></img>
+              <img className="newmsg" src={newmsg} alt="new msg"></img>
             </Stack>
           </Stack>
           <Stack
@@ -110,7 +119,6 @@ const Message = () => {
             bgcolor={"white"}
             alignItems={"center"}
             sx={{ pt: 1 }}
-            border="1px solid grey"
           >
             <Search size="small">
               <SearchIconWrapper>
@@ -143,19 +151,20 @@ const Message = () => {
                   <Stack
                     sx={{
                       width: "311px",
-                      height: "66vh",
-                      overflowY: "scroll",
+                      height: "78vh",
+                      overflowY: "auto",
                       bgcolor: "white",
                       pt: 0,
                       p: 0,
                     }}
                   >
                     <Stack sx={{ mt: 0 }}>
-                      <ChatCard />
-                      <ChatCard />
-                      <ChatCard />
-                      <ChatCard />
-                      <ChatCard />
+                      {chats?.map((item)=>(<>
+                      {console.log(item)}
+                        <ChatCard key={item._id} name={item.users[1].firstName} industry={item.users[1].company.industry}/>
+                      </>
+
+                      ))}
                     </Stack>
                   </Stack>
                 </TabPanel>
@@ -164,7 +173,7 @@ const Message = () => {
                     <CardContent
                       sx={{
                         width: "280px",
-                        minHeight: "60vh",
+                        minHeight: "74vh",
                         overflow: "auto",
                       }}
                     ></CardContent>

@@ -1,16 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { register,login } from "../../services/auth.service";
+import { register} from "../../services/auth.service";
 import { ACTION_TYPE } from "./authActionType";
 import axios from 'axios'
 export const registerUser = createAsyncThunk(
 ACTION_TYPE.ADD_USER,
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
       console.log(email,password)
       const res = await register({email,password})
       return res

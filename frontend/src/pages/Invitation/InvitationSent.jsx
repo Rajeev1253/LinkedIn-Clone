@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../component/Navbar'
-import { Box, Stack, Typography, Card,CardContent,Button} from '@mui/material'
+import {  Stack, Typography, Card,CardContent,Button} from '@mui/material'
 import "./invitation.css"
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom'
@@ -11,10 +11,11 @@ import { SenderRequest } from '../../features/connection/connectionAction';
 
 
 const InvitationSent = () => {
-  const token = useSelector((state)=>state.auth.userToken)
   const dispatch = useDispatch();
+  const token = useSelector((state)=>state.auth.userToken)
   useEffect(()=>{
     dispatch(SenderRequest(token))
+     // eslint-disable-next-line react-hooks/exhaustive-deps 
   },[dispatch])
   const connection2 =   useSelector((state)=>state.connection.connection)
   const isLoading = useSelector((state) => state.connection.loading);

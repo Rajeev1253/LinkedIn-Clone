@@ -9,13 +9,9 @@ import {
   AppBar,
   IconButton,
   Toolbar,
-  Box,
   Avatar,
   Typography,
   Stack,
-  Tab,
-  Tabs,
-  Divider,
 } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -124,7 +120,7 @@ const Navbar = () => {
                   to="/home"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
-                  <img src={homeicon}></img>
+                  <img src={homeicon} alt="home"></img>
                   <Typography fontSize="12px">Home</Typography>
                 </Link>
               </Stack>
@@ -139,7 +135,7 @@ const Navbar = () => {
                   to="/network"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
-                  <img src={networkicon}></img>
+                  <img src={networkicon} alt="Network"></img>
                   <Typography fontSize="12px">My Network</Typography>
                 </Link>
               </Stack>
@@ -154,7 +150,7 @@ const Navbar = () => {
                   to="/jobs"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
-                  <img src={jobicon}></img>
+                  <img src={jobicon} alt="jobs"></img>
                   <Typography fontSize="12px" color={"gray"}>
                     Jobs
                   </Typography>
@@ -171,7 +167,7 @@ const Navbar = () => {
                   to="/messaging"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
-                  <img src={messageicon}></img>
+                  <img src={messageicon} alt="messaging"></img>
                   <Typography fontSize="12px" color={"gray"}>
                     Messaging
                   </Typography>
@@ -188,7 +184,7 @@ const Navbar = () => {
                   to="/notfication"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
-                  <img src={notification}></img>
+                  <img src={notification} alt="notification"></img>
                   <Typography fontSize="12px" color={"gray"}>
                     Notfications
                   </Typography>
