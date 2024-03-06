@@ -29,9 +29,9 @@ const Request = (props) => {
 
   }
   const handleMessage = async()=>{
-    
+  console.log("data",data)
     dispatch(createChat(data))
-
+    navigate("/messaging")
   }
 
   const handleIgnore = async () => {

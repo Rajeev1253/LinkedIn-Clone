@@ -3,13 +3,18 @@ const messageSchema = new mongoose.Schema(
   {
     senderId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "users",
     },
-    content: { type: String, trim: true },
-    chat: { type: mongoose.Schema.Types.ObjectId },
-    ref: "chat",
+    content: {
+      type: String,
+       trim: true 
+      },
+    chatId: {
+       type: mongoose.Schema.Types.ObjectId,
+       ref: "chat",
+    }
   },
   { timestamps: true }
 );
 
-export const message = mongoose.model("message", messageSchema);
+export const messageModel = mongoose.model("message", messageSchema);

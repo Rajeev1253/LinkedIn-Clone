@@ -1,4 +1,5 @@
 import React from "react";
+import { io } from "socket.io-client"
 import {
   Avatar,
   Button,
@@ -17,7 +18,10 @@ import Chat from "./Chat";
 import Advertisement from "./Advertisement";
 import Footer from "./Footer";
 
-const   MessageBox = () => {
+const   MessageBox = ({currentChat}) => {
+  const socket = io("https://localhost/8080");
+  const chat = currentChat;
+
   return (
     <Stack  direction={"row"}>
      <Stack >
@@ -35,7 +39,7 @@ const   MessageBox = () => {
         }}
       >
         <Typography fontSize="14px" sx={{ mb: 3, p: 1 }}>
-          Username
+          {}
         </Typography>
         <Stack direction="row" gap="10px" paddingRight="10px" color="gray">
           <MoreHorizIcon />
@@ -44,7 +48,7 @@ const   MessageBox = () => {
       </Stack>
       <Stack height={"62.5vh"} width={"469px"} bgcolor={"white"} overflow="auto">
         <Avatar sx={{width:"72px",height:"72px",ml:1,mt:2}}></Avatar>
-        <Typography sx={{pl:3,pt:1}}>Username</Typography>
+        <Typography sx={{pl:3,pt:1}}>{currentChat && currentChat.user[0].firstName}</Typography>
         <Typography fontSize={"14px"} sx={{pl:3,pt:1} }>Skills</Typography>
         <Divider/>
         <Chat/>

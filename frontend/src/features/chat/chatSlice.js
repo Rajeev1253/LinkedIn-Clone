@@ -26,11 +26,10 @@ export const chatSlice = createSlice({
         })
         binders.addCase(createChat.pending,(state)=>{
             state.loading=true;
-            
         })
         binders.addCase(createChat.fulfilled,(state,action)=>{
             state.loading=false;
-            state.chats = action.payload.data.chats;
+            state.chats.push(action.payload.data.chat);
         })
         binders.addCase(createChat.rejected,(state,action)=>{
             state.loading=true;

@@ -4,7 +4,7 @@ const chatSchema = new mongoose.Schema(
   {
     chatName: { type: String, trim: true },
     isGroupChat: { type: Boolean, default: false },
-    users: [
+    user: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
@@ -12,7 +12,7 @@ const chatSchema = new mongoose.Schema(
     ],
     latestMessage: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Message",
+      ref: "message",
     },
     groupAdmin: {
       type: mongoose.Schema.Types.ObjectId,

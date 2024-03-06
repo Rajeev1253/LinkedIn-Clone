@@ -1,23 +1,31 @@
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
+
+  Button,
+
   Divider,
   Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
 
-const ChatCard = (props) => {
+const ChatCard = ({item, currentChat,setCurrentChat}) => {
+  console.log("item",item)
+  const handleBox = async(req,res)=>{
+
+  }
   return (
     <Box
+    
       sx={{
         width: "30px",
         height: "91px",
         display: "flex",
         alignItems: "center",
       }}
+      onClick={()=>{setCurrentChat(item)}}
+    
     >
       <Stack direction={"row"} alignItems={"center"} sx={{ ml: 2 }}>
         <Stack>
@@ -29,15 +37,19 @@ const ChatCard = (props) => {
             justifyContent={"space-between"}
             width="200px"
           >
-            <Typography color={"black"}>{props.name}</Typography>
+            <Typography color={"black"}>{item?.user[0]?.firstName || "Linkedin User"}</Typography>
             <Typography>time</Typography>
           </Stack>
           <Typography>Profession</Typography>
-          <Typography>{props.industry}</Typography>
+          <Typography>{item.industry}</Typography>
           <Divider />
         </Stack>
       </Stack>
+
+      
     </Box>
+
+    
   );
 };
 

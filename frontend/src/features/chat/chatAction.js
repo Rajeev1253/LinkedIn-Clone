@@ -24,13 +24,14 @@ export const fetchChat = createAsyncThunk(
 export const createChat = createAsyncThunk(
     ACTION_TYPE.CREATE_CHATS,
     async({userId,token})=>{
+        console.log('userId,token: ', userId,token);
         try{
-            const config ={
-                headers:{
-                    Authorization: token,
-                }
-            };
-            const res = await axios.post( `http://localhost:8080/chat`,userId,config);
+            const config = {
+                headers: {
+                  Authorization:token,
+                },
+              };
+            const res = await axios.post(`http://localhost:8080/chat`,{userId:userId},config);
             console.log('res: ', res);
             return res    
         }

@@ -58,8 +58,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+
 const Message = () => {
   const [value, setValue] = useState("1");
+  const chats = useSelector((state)=>state.chat.chats) 
+  const [currentChat,setCurrentChat]= useState(chats[0])
+  // console.log('currentChat: ', currentChat);
+  const [RecievedData,setRecievedData] = useState({})
+  const [IsTrue,setIsTrue] =useState(false)
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -71,8 +79,17 @@ const Message = () => {
     dispatch(fetchChat(token))
   },[])
 
-  const chats = useSelector((state)=>state.chat.chats) 
+
   console.log("cahts",chats)
+
+  const handleChats = (chatId ) => {
+    setRecievedData({ chatId: chatId });
+    setIsTrue(true);
+  }
+
+  const handleMessage=()=>{
+  
+  }
   return (
     <Stack sx={{ border: "1px thin grey" , bgcolor: "#f4f2ee",
     height: "100vh",}}>
@@ -160,8 +177,8 @@ const Message = () => {
                   >
                     <Stack sx={{ mt: 0 }}>
                       {chats?.map((item)=>(<>
-                      {console.log(item)}
-                        <ChatCard key={item._id} name={item.users[1].firstName} industry={item.users[1].company.industry}/>
+                      {/* {console.log(item)} */}
+                        <ChatCard key={item._id} item={item}  currentChat={currentChat} setCurrentChat={setCurrentChat}/>
                       </>
 
                       ))}
@@ -184,9 +201,9 @@ const Message = () => {
           </Stack>
         </Stack>
 
-        <Stack>
-          <MessageBox />
-        </Stack>
+          <Stack>
+            <MessageBox currentChat={currentChat}/>
+          </Stack>
       </Stack>
     </Stack>
   );
