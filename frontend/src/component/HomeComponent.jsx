@@ -67,7 +67,7 @@ const HomeComponent = () => {
   }, []);
 
   const posts = useSelector((state) => state.post.posts);
-  console.log("posts",posts)
+  console.log("posts", posts);
   const isLoading = useSelector((state) => state.post.isLoading);
   const error = useSelector((state) => state.post.error);
 
@@ -285,9 +285,10 @@ const HomeComponent = () => {
           <Stack>
             <div className="data-box">
               <div className="data">
-                {posts.map((post) => (<>
-                  <Card2 key={post._id} post={post} />
-                </>
+                {posts?.map((post) => (
+                  <>
+                    <Card2 key={post._id} post={post} />
+                  </>
                 ))}
               </div>
             </div>
