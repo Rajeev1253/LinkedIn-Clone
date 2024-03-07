@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { sendRequest } from "../features/connection/connectionAction";
 import { useSelector } from "react-redux";
 import profile from "../assets/bgdefault.png";
+import { red } from "@mui/material/colors";
 const UserCard = ({ item }) => {
   const [clicked, setClicked] = useState(false);
   const userId = item._id;

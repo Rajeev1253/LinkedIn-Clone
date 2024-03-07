@@ -13,6 +13,11 @@ export const postRequest = async (req) => {
       connectionBy: _id,
       connectedTo: userId,
     }).save();
+    // const data = {
+    //   user: userId,
+    //   type:1,
+    //   text:   
+    // }
     return newRequest;
   } catch (error) {
     throw error;

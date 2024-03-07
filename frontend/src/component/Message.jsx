@@ -62,11 +62,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Message = () => {
   const [value, setValue] = useState("1");
-  const chats = useSelector((state)=>state.chat.chats) 
-  const [currentChat,setCurrentChat]= useState(chats[0])
+  const chats = useSelector((state)=>state.chat) 
+  const [currentChat,setCurrentChat]= useState({})  
   // console.log('currentChat: ', currentChat);
-  const [RecievedData,setRecievedData] = useState({})
-  const [IsTrue,setIsTrue] =useState(false)
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -76,20 +75,18 @@ const Message = () => {
   const token = useSelector((state)=>state.auth.userToken)
   
   useEffect(()=>{
-    dispatch(fetchChat(token))
+     dispatch(fetchChat(token))
   },[])
 
+  useEffect(()=>{
+    if(!chats.loading && chats.chats.length >0)
+      setCurrentChat(chats[0])
+  },[chats])
 
   console.log("cahts",chats)
 
-  const handleChats = (chatId ) => {
-    setRecievedData({ chatId: chatId });
-    setIsTrue(true);
-  }
 
-  const handleMessage=()=>{
-  
-  }
+
   return (
     <Stack sx={{ border: "1px thin grey" , bgcolor: "#f4f2ee",
     height: "100vh",}}>
@@ -176,7 +173,7 @@ const Message = () => {
                     }}
                   >
                     <Stack sx={{ mt: 0 }}>
-                      {chats?.map((item)=>(<>
+                      {chats.chats?.map((item)=>(<>
                       {/* {console.log(item)} */}
                         <ChatCard key={item._id} item={item}  currentChat={currentChat} setCurrentChat={setCurrentChat}/>
                       </>

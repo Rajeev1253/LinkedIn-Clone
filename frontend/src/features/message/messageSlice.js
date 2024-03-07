@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchMessage } from "./messageAction";
 
 const initialState = {
     isLoading: false,
@@ -10,10 +11,14 @@ const initialState = {
     name: "message",
     initialState,
     reducers: {
-      saveSocket(state, action) {
-        console.log("socket ", action.payload);
-        state.socket = action.payload;
-      },
+        addMessage(state, action) {
+
+            console.log("new Message", action.payload)
+
+            console.log('state.messages: ', state.messages);
+            state.messages = [...state.messages,action.payload]
+
+        }
     },
     extraReducers: (builder) => {
       builder.addCase(fetchMessage.pending, (state, action) => {
@@ -21,7 +26,9 @@ const initialState = {
       });
       builder.addCase(fetchMessage.fulfilled, (state, action) => {
         state.isLoading = false;
+        console.log(action.payload)
         state.messages = action.payload;
+
       });
       builder.addCase(fetchMessage.rejected, (state, action) => {
         state.isLoading = false;

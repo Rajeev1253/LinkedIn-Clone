@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ACTION_TYPE } from "./messageType";
+import axios from "axios";
+import Message from "../../component/Message";
 
-export const fetchMessage = createAsyncThunk(
+ export const fetchMessage = createAsyncThunk(
   ACTION_TYPE.FETCH_MESSAGE,
   async ({ chatId, token }) => {
     try {
@@ -11,7 +13,9 @@ export const fetchMessage = createAsyncThunk(
         },
       };
 
-      const response = await axios();
+      const response = await axios.get(`http://localhost:8080/message/${chatId}`,config);
+      console.log("message",response)
+      return response
     } catch (error) {
       console.log(error);
     }

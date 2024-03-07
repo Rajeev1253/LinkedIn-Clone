@@ -1,22 +1,37 @@
 import { Avatar, Box, Button, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMessage,} from "../features/message/messageAction";
+
 
 const ChatCard = ({ item, currentChat, setCurrentChat }) => {
+  const dispatch = useDispatch();
   console.log("item", item);
-  const handleClick = (e, item) => {
+  const token  = useSelector((state)=>state.auth.userToken)
+  const socket = useSelector((state)=>state.chat.socket);
+  const data = {
+    chatId : item._id,
+    token : token
+  }
+  console.log("data",data)
+
+  const handleClick = (item) => {
+    console.log(item)
     setCurrentChat(item);
+    socket.emit("join",item._id)
+    console.log(currentChat)
+    dispatch(fetchMessage(data))
   };
   return (
     <Box
       sx={{
-        width: "30px",
+        width: "32  0px",
         height: "91px",
         display: "flex",
         alignItems: "center",
       }}
-      onClick={() => {
-        setCurrentChat(item);
-      }}
+      onClick={
+       ()=> handleClick(item)}
     >
       <Stack direction={"row"} alignItems={"center"} sx={{ ml: 2 }}>
         <Stack>

@@ -11,12 +11,12 @@ export const fetchChat = createAsyncThunk(
                 }
             };
             const res = await axios.get( `http://localhost:8080/chat`,config);
-            console.log('res: ', res);
+            console.log('res of the chat fetch: ', res);
             return res    
         }
 
         catch(error){
-            console.log(error)
+            console.log(error, "error of the fetch chat")
         }
     }
 

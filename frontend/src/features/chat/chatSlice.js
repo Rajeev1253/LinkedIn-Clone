@@ -23,7 +23,8 @@ export const chatSlice = createSlice({
     });
     binders.addCase(fetchChat.fulfilled, (state, action) => {
       state.loading = false;
-      state.chats = action.payload.data.chats;
+      console.log(action.payload.data.chats)
+      state.chats = action.payload?.data.chats;
     });
     binders.addCase(fetchChat.rejected, (state, action) => {
       state.loading = true;

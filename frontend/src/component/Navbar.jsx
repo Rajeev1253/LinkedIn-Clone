@@ -181,7 +181,7 @@ const Navbar = () => {
                 height={"52px"}
               >
                 <Link
-                  to="/notfication"
+                  to="/notification"
                   style={{ paddingLeft: 13, textDecoration: "none" }}
                 >
                   <img src={notification} alt="notification"></img>
